@@ -1,0 +1,23 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /admin
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=admin&useSSL=false&stringtype=unspecified
+    #    username:
+    #    password:
+    driver-class-name: org.postgresql.Driver
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/app/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印SQL日志（开发环境）
+
+sweet:
+  doc:
+    title: Sweet Admin API
+    version: 1.0.0
+    description: 管理后台接口文档

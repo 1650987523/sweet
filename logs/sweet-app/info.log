@@ -1,0 +1,122 @@
+2025-12-18T09:06:24.496+08:00  INFO 24857 --- [main] com.sweet.app.Application                : Starting Application using Java 21.0.9 with PID 24857 (/Users/whr/programming/javaWork/sweet/sweet-app/target/classes started by whr in /Users/whr/programming/javaWork/sweet)
+2025-12-18T09:06:24.497+08:00  INFO 24857 --- [main] com.sweet.app.Application                : No active profile set, falling back to 1 default profile: "default"
+2025-12-18T09:06:24.894+08:00  INFO 24857 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-12-18T09:06:24.899+08:00  INFO 24857 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-18T09:06:24.899+08:00  INFO 24857 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-12-18T09:06:24.916+08:00  INFO 24857 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/app]    : Initializing Spring embedded WebApplicationContext
+2025-12-18T09:06:24.917+08:00  INFO 24857 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 396 ms
+2025-12-18T09:06:25.185+08:00  INFO 24857 --- [main] m.e.s.MybatisPlusApplicationContextAware : Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6f603e89
+2025-12-18T09:06:25.236+08:00  INFO 24857 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/app'
+2025-12-18T09:06:25.240+08:00  INFO 24857 --- [main] com.sweet.app.Application                : Started Application in 0.999 seconds (process running for 1.154)
+2025-12-18T09:06:25.241+08:00  WARN 24857 --- [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-12-18T09:06:25.241+08:00  WARN 24857 --- [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-12-18T09:08:18.567+08:00  INFO 24857 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/app]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-18T09:08:18.570+08:00  INFO 24857 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-18T09:08:18.574+08:00  INFO 24857 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-12-18T09:08:18.587+08:00  INFO 24857 --- [http-nio-8081-exec-1] c.s.security.Interceptor.LogInterceptor  : 
+========================================== Start ==========================================
+URL            : http://localhost:8081/app/user/1
+Method         : GET
+IP             : 0:0:0:0:0:0:0:1
+Controller     : com.sweet.app.controller.UserController
+Method         : getUserById
+Headers        : {sec-fetch-mode=cors, referer=http://localhost:8081/app/swagger-ui/index.html, sec-fetch-site=same-origin, accept-language=zh-CN,zh;q=0.9, cookie=x-hng=lang=zh-CN&domain=localhost, accept=*/*, sec-ch-ua="Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24", sec-ch-ua-mobile=?0, sec-ch-ua-platform="macOS", host=localhost:8081, connection=keep-alive, accept-encoding=gzip, deflate, br, zstd, user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36, sec-fetch-dest=empty}
+===========================================================================================
+2025-12-18T09:08:18.604+08:00  INFO 24857 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-18T09:08:18.640+08:00  INFO 24857 --- [http-nio-8081-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@71fcc5c1
+2025-12-18T09:08:18.641+08:00  INFO 24857 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-18T09:08:18.670+08:00  INFO 24857 --- [http-nio-8081-exec-1] c.s.security.Interceptor.LogInterceptor  : 
+=========================================== End ===========================================
+URL            : http://localhost:8081/app/user/1
+Duration       : 83 ms
+Status         : 200
+===========================================================================================
+2025-12-18T09:08:18.721+08:00  INFO 24857 --- [http-nio-8081-exec-2] c.s.security.Interceptor.LogInterceptor  : 
+========================================== Start ==========================================
+URL            : http://localhost:8081/app/user/1
+Method         : GET
+IP             : 0:0:0:0:0:0:0:1
+Controller     : com.sweet.app.controller.UserController
+Method         : getUserById
+Headers        : {sec-fetch-mode=cors, referer=http://localhost:8081/app/swagger-ui/index.html, sec-fetch-site=same-origin, accept-language=zh-CN,zh;q=0.9, cookie=x-hng=lang=zh-CN&domain=localhost, accept=*/*, sec-ch-ua="Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24", sec-ch-ua-mobile=?0, sec-ch-ua-platform="macOS", host=localhost:8081, connection=keep-alive, accept-encoding=gzip, deflate, br, zstd, user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36, sec-fetch-dest=empty}
+===========================================================================================
+2025-12-18T09:08:18.723+08:00  INFO 24857 --- [http-nio-8081-exec-2] c.s.security.Interceptor.LogInterceptor  : 
+=========================================== End ===========================================
+URL            : http://localhost:8081/app/user/1
+Duration       : 2 ms
+Status         : 200
+===========================================================================================
+2025-12-18T09:09:58.741+08:00  INFO 24857 --- [http-nio-8081-exec-4] c.s.security.Interceptor.LogInterceptor  : 
+========================================== Start ==========================================
+URL            : http://localhost:8081/app/swagger-ui/index.html
+Method         : GET
+IP             : 0:0:0:0:0:0:0:1
+Headers        : {sec-fetch-mode=navigate, sec-fetch-site=same-origin, accept-language=zh-CN,zh;q=0.9, cookie=x-hng=lang=zh-CN&domain=localhost, sec-fetch-user=?1, accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, if-modified-since=Fri, 31 Oct 2025 21:11:12 GMT, sec-ch-ua="Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24", sec-ch-ua-mobile=?0, sec-ch-ua-platform="macOS", host=localhost:8081, upgrade-insecure-requests=1, connection=keep-alive, cache-control=max-age=0, accept-encoding=gzip, deflate, br, zstd, user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36, sec-fetch-dest=document}
+===========================================================================================
+2025-12-18T09:09:58.759+08:00  INFO 24857 --- [http-nio-8081-exec-4] c.s.security.Interceptor.LogInterceptor  : 
+=========================================== End ===========================================
+URL            : http://localhost:8081/app/swagger-ui/index.html
+Duration       : 18 ms
+Status         : 304
+===========================================================================================
+2025-12-18T09:09:58.777+08:00  INFO 24857 --- [http-nio-8081-exec-5] c.s.security.Interceptor.LogInterceptor  : 
+========================================== Start ==========================================
+URL            : http://localhost:8081/app/swagger-ui/swagger-initializer.js
+Method         : GET
+IP             : 0:0:0:0:0:0:0:1
+Headers        : {sec-fetch-mode=no-cors, referer=http://localhost:8081/app/swagger-ui/index.html, sec-fetch-site=same-origin, accept-language=zh-CN,zh;q=0.9, cookie=x-hng=lang=zh-CN&domain=localhost, accept=*/*, sec-ch-ua="Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24", sec-ch-ua-mobile=?0, sec-ch-ua-platform="macOS", host=localhost:8081, connection=keep-alive, accept-encoding=gzip, deflate, br, zstd, user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36, sec-fetch-dest=script}
+===========================================================================================
+2025-12-18T09:09:58.791+08:00  INFO 24857 --- [http-nio-8081-exec-5] c.s.security.Interceptor.LogInterceptor  : 
+=========================================== End ===========================================
+URL            : http://localhost:8081/app/swagger-ui/swagger-initializer.js
+Duration       : 14 ms
+Status         : 200
+===========================================================================================
+2025-12-18T09:09:59.015+08:00  INFO 24857 --- [http-nio-8081-exec-6] c.s.security.Interceptor.LogInterceptor  : 
+========================================== Start ==========================================
+URL            : http://localhost:8081/app/v3/api-docs/swagger-config
+Method         : GET
+IP             : 0:0:0:0:0:0:0:1
+Controller     : org.springdoc.webmvc.ui.SwaggerConfigResource
+Method         : openapiJson
+Headers        : {sec-fetch-mode=cors, referer=http://localhost:8081/app/swagger-ui/index.html, sec-fetch-site=same-origin, accept-language=zh-CN,zh;q=0.9, cookie=x-hng=lang=zh-CN&domain=localhost, accept=*/*, sec-ch-ua="Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24", sec-ch-ua-mobile=?0, sec-ch-ua-platform="macOS", host=localhost:8081, connection=keep-alive, accept-encoding=gzip, deflate, br, zstd, user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36, sec-fetch-dest=empty}
+===========================================================================================
+2025-12-18T09:09:59.020+08:00  INFO 24857 --- [http-nio-8081-exec-6] c.s.security.Interceptor.LogInterceptor  : 
+=========================================== End ===========================================
+URL            : http://localhost:8081/app/v3/api-docs/swagger-config
+Duration       : 5 ms
+Status         : 200
+===========================================================================================
+2025-12-18T09:09:59.044+08:00  INFO 24857 --- [http-nio-8081-exec-7] c.s.security.Interceptor.LogInterceptor  : 
+========================================== Start ==========================================
+URL            : http://localhost:8081/app/v3/api-docs
+Method         : GET
+IP             : 0:0:0:0:0:0:0:1
+Controller     : org.springdoc.webmvc.api.OpenApiWebMvcResource
+Method         : openapiJson
+Headers        : {sec-fetch-mode=cors, referer=http://localhost:8081/app/swagger-ui/index.html, sec-fetch-site=same-origin, accept-language=zh-CN,zh;q=0.9, cookie=x-hng=lang=zh-CN&domain=localhost, accept=application/json,*/*, sec-ch-ua="Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24", sec-ch-ua-mobile=?0, sec-ch-ua-platform="macOS", host=localhost:8081, connection=keep-alive, accept-encoding=gzip, deflate, br, zstd, user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36, sec-fetch-dest=empty}
+===========================================================================================
+2025-12-18T09:09:59.167+08:00  INFO 24857 --- [http-nio-8081-exec-7] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 119 ms
+2025-12-18T09:09:59.173+08:00  INFO 24857 --- [http-nio-8081-exec-7] c.s.security.Interceptor.LogInterceptor  : 
+=========================================== End ===========================================
+URL            : http://localhost:8081/app/v3/api-docs
+Duration       : 129 ms
+Status         : 200
+===========================================================================================
+2025-12-18T09:10:16.767+08:00  INFO 24857 --- [http-nio-8081-exec-8] c.s.security.Interceptor.LogInterceptor  : 
+========================================== Start ==========================================
+URL            : http://localhost:8081/app/user
+Method         : GET
+IP             : 0:0:0:0:0:0:0:1
+Controller     : com.sweet.app.controller.UserController
+Method         : page
+Headers        : {sec-fetch-mode=cors, referer=http://localhost:8081/app/swagger-ui/index.html, sec-fetch-site=same-origin, accept-language=zh-CN,zh;q=0.9, cookie=x-hng=lang=zh-CN&domain=localhost, accept=*/*, sec-ch-ua="Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24", sec-ch-ua-mobile=?0, sec-ch-ua-platform="macOS", host=localhost:8081, connection=keep-alive, accept-encoding=gzip, deflate, br, zstd, user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36, sec-fetch-dest=empty}
+Query String   : pageNum=1&pageSize=10
+===========================================================================================
+2025-12-18T09:10:16.858+08:00  INFO 24857 --- [http-nio-8081-exec-8] c.s.security.Interceptor.LogInterceptor  : 
+=========================================== End ===========================================
+URL            : http://localhost:8081/app/user
+Duration       : 92 ms
+Status         : 200
+===========================================================================================
+2025-12-18T09:11:22.084+08:00  INFO 24857 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete

@@ -1,6 +1,5 @@
 package com.sweet.common.response;
 
-
 import lombok.Data;
 
 import java.io.Serializable;

@@ -28,11 +28,15 @@
         </dependency>
         <dependency>
             <groupId>com.sweet</groupId>
-            <artifactId>sweet-service</artifactId>
+            <artifactId>sweet-doc</artifactId>
         </dependency>
         <dependency>
             <groupId>com.sweet</groupId>
             <artifactId>sweet-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sweet</groupId>
+            <artifactId>sweet-service</artifactId>
         </dependency>
     </dependencies>
 

@@ -22,6 +22,7 @@
         <module>sweet-common</module>
         <module>sweet-security</module>
         <module>sweet-service</module>
+        <module>sweet-doc</module>
     </modules>
 
     <properties>
@@ -34,6 +35,7 @@
         <mybatis-plus.version>3.5.15</mybatis-plus.version>
         <postgresql.version>42.7.8</postgresql.version>
         <lombok.version>1.18.42</lombok.version>
+        <hutool.version>5.8.38</hutool.version>
     </properties>
 
     <dependencyManagement>
@@ -48,6 +50,11 @@
             <dependency>
                 <groupId>com.sweet</groupId>
                 <artifactId>sweet-common</artifactId>
+                <version>${sweet.moudle.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sweet</groupId>
+                <artifactId>sweet-doc</artifactId>
                 <version>${sweet.moudle.version}</version>
             </dependency>
             <dependency>
@@ -88,6 +95,13 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-bom</artifactId>
+                <version>${hutool.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,0 +1,50 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /admin
+
+spring:
+  datasource:
+    dynamic:
+      primary: admin
+      strict: true  #严格匹配数据源模式
+      datasource:
+        admin:
+          url: jdbc:postgresql://localhost:5432/postgres?currentSchema=admin&useSSL=false&stringtype=unspecified
+#          username:
+#          password:
+          driver-class-name: org.postgresql.Driver
+        app:
+          url: jdbc:postgresql://localhost:5432/postgres?currentSchema=app&useSSL=false&stringtype=unspecified
+#          username:
+#          password:
+          driver-class-name: org.postgresql.Driver
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/admin/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+sa-token:
+  token-name: jwt-sa-token
+  timeout: 2592000
+  active-timeout: -1
+  is-concurrent: true
+  is-share: false
+  token-style: tik
+  is-log: true
+  jwt-secret-key: sdjfiohdsiohfwhqjsaioghfiugdsayugfyugewd
+
+sweet:
+  security:
+    web-aes-secret: wanglaoban123456  #web端对称加密密钥,用于解析前端传入的密码
+
+  oss:
+    s3:
+      account-id: a621c66281d1c965ebfdc181272e72b2
+      access-key-id: 1a9e33e4a060a70a7261eac2af9f6a50
+      secret-access-key: 076ad7729d8aa09fec992599778e59a877748ff01995c866a84762c883d72c91
+      bucket-name: sweet
+      endpoint: https://a621c66281d1c965ebfdc181272e72b2.r2.cloudflarestorage.com
+      custom-domain: https://wanghengrun.cn/

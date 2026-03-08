@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 统一管理所有启动器版本,有未覆盖的单独配置版本依赖 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.8</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.sweet</groupId>
+    <artifactId>sweet</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>sweet-app</module>
+        <module>sweet-admin</module>
+        <module>sweet-common</module>
+        <module>sweet-security</module>
+        <module>sweet-service</module>
+        <module>sweet-doc</module>
+        <module>sweet-oss</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sweet.moudle.version>1.0-SNAPSHOT</sweet.moudle.version>
+        <spring-doc.version>2.8.14</spring-doc.version>
+        <sa-token.version>1.44.0</sa-token.version>
+        <mybatis-plus.version>3.5.15</mybatis-plus.version>
+        <dynamic-datasource.version>4.5.0</dynamic-datasource.version>
+        <postgresql.version>42.7.8</postgresql.version>
+        <lombok.version>1.18.42</lombok.version>
+        <hutool.version>5.8.5</hutool.version>
+        <sa-token.version>1.44.0</sa-token.version>
+        <sa-token.jwt.version>1.44.0</sa-token.jwt.version>
+        <swagger-ui-annotation.version>2.2.38</swagger-ui-annotation.version>
+        <software.amazon.awssdk.version>2.21.0</software.amazon.awssdk.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!--            管理自己的共享版本依赖-->
+            <dependency>
+                <groupId>com.sweet</groupId>
+                <artifactId>sweet-security</artifactId>
+                <version>${sweet.moudle.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sweet</groupId>
+                <artifactId>sweet-common</artifactId>
+                <version>${sweet.moudle.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sweet</groupId>
+                <artifactId>sweet-doc</artifactId>
+                <version>${sweet.moudle.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sweet</groupId>
+                <artifactId>sweet-service</artifactId>
+                <version>${sweet.moudle.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sweet</groupId>
+                <artifactId>sweet-oss</artifactId>
+                <version>${sweet.moudle.version}</version>
+            </dependency>
+
+            <!--            管理第三方依赖版本(父依赖未覆盖的)-->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${spring-doc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-spring-boot3-starter</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-bom</artifactId>
+                <version>${mybatis-plus.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>
+                <version>${dynamic-datasource.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-bom</artifactId>
+                <version>${hutool.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-spring-boot3-starter</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-jwt</artifactId>
+                <version>${sa-token.jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-ui-annotation.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>software.amazon.awssdk</groupId>
+                <artifactId>s3</artifactId>
+                <version>${software.amazon.awssdk.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+
+</project>

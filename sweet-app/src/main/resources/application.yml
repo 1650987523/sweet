@@ -1,0 +1,35 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /app
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=app&useSSL=false&stringtype=unspecified
+#    username:
+#    password:
+    driver-class-name: org.postgresql.Driver
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/app/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+sa-token:
+  token-name: jwt-sa-token
+  timeout: 2592000
+  active-timeout: -1
+  is-concurrent: true
+  is-share: false
+  token-style: tik
+  is-log: true
+  jwt-secret-key: sdjfiohdsiohfwhqjsaioghfiugdsayugfyugewd
+
+sweet:
+  doc:
+    title: Sweet App API
+    version: 1.0.0
+    description: C端用户接口文档
+  security:
+    web-aes-secret: wanglaoban  #web端对称加密密钥,用于解析前端传入的密码

@@ -1,0 +1,138 @@
+2025-12-21T10:28:05.294+08:00  INFO 25590 --- [main] com.sweet.app.Application                : Starting Application using Java 21.0.9 with PID 25590 (/Users/whr/programming/javaWork/sweet/sweet-app/target/classes started by whr in /Users/whr/programming/javaWork/sweet)
+2025-12-21T10:28:05.294+08:00  INFO 25590 --- [main] com.sweet.app.Application                : No active profile set, falling back to 1 default profile: "default"
+2025-12-21T10:28:05.717+08:00  INFO 25590 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-12-21T10:28:05.722+08:00  INFO 25590 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-21T10:28:05.722+08:00  INFO 25590 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-12-21T10:28:05.744+08:00  INFO 25590 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/app]    : Initializing Spring embedded WebApplicationContext
+2025-12-21T10:28:05.744+08:00  INFO 25590 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 432 ms
+2025-12-21T10:28:05.791+08:00  WARN 25590 --- [main] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [0] datasource,Please add your primary datasource or check your configuration
+2025-12-21T10:28:06.051+08:00  INFO 25590 --- [main] m.e.s.MybatisPlusApplicationContextAware : Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6a66a204
+2025-12-21T10:28:06.103+08:00  INFO 25590 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/app'
+2025-12-21T10:28:06.107+08:00  INFO 25590 --- [main] com.sweet.app.Application                : Started Application in 1.024 seconds (process running for 1.146)
+2025-12-21T10:28:06.108+08:00  WARN 25590 --- [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-12-21T10:28:06.108+08:00  WARN 25590 --- [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-12-21T10:28:08.585+08:00  INFO 25590 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-21T17:11:25.229+08:00  INFO 51518 --- [main] com.sweet.app.Application                : Starting Application using Java 21.0.9 with PID 51518 (/Users/whr/programming/javaWork/sweet/sweet-app/target/classes started by whr in /Users/whr/programming/javaWork/sweet)
+2025-12-21T17:11:25.230+08:00  INFO 51518 --- [main] com.sweet.app.Application                : No active profile set, falling back to 1 default profile: "default"
+2025-12-21T17:11:25.644+08:00  INFO 51518 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-12-21T17:11:25.650+08:00  INFO 51518 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-21T17:11:25.650+08:00  INFO 51518 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-12-21T17:11:25.670+08:00  INFO 51518 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/app]    : Initializing Spring embedded WebApplicationContext
+2025-12-21T17:11:25.670+08:00  INFO 51518 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 425 ms
+2025-12-21T17:11:25.718+08:00  WARN 51518 --- [main] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [0] datasource,Please add your primary datasource or check your configuration
+2025-12-21T17:11:25.961+08:00  INFO 51518 --- [main] m.e.s.MybatisPlusApplicationContextAware : Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6a66a204
+2025-12-21T17:11:26.008+08:00  INFO 51518 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/app'
+2025-12-21T17:11:26.012+08:00  INFO 51518 --- [main] com.sweet.app.Application                : Started Application in 0.975 seconds (process running for 1.091)
+2025-12-21T17:11:26.013+08:00  WARN 51518 --- [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-12-21T17:11:26.013+08:00  WARN 51518 --- [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-12-21T17:11:36.738+08:00  INFO 51518 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/app]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-21T17:11:36.738+08:00  INFO 51518 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-21T17:11:36.739+08:00  INFO 51518 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-12-21T17:11:37.020+08:00  INFO 51518 --- [http-nio-8081-exec-8] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 108 ms
+2025-12-21T17:12:58.583+08:00  INFO 51518 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-21T17:13:00.590+08:00  INFO 51518 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-21T17:13:00.596+08:00  INFO 51518 --- [SpringApplicationShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2025-12-21T17:13:00.596+08:00  INFO 51518 --- [SpringApplicationShutdownHook] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2025-12-21T17:15:56.323+08:00  INFO 52374 --- [main] com.sweet.app.Application                : Starting Application using Java 21.0.9 with PID 52374 (/Users/whr/programming/javaWork/sweet/sweet-app/target/classes started by whr in /Users/whr/programming/javaWork/sweet)
+2025-12-21T17:15:56.324+08:00  INFO 52374 --- [main] com.sweet.app.Application                : No active profile set, falling back to 1 default profile: "default"
+2025-12-21T17:15:56.737+08:00  INFO 52374 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-12-21T17:15:56.742+08:00  INFO 52374 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-21T17:15:56.742+08:00  INFO 52374 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-12-21T17:15:56.758+08:00  INFO 52374 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/app]    : Initializing Spring embedded WebApplicationContext
+2025-12-21T17:15:56.758+08:00  INFO 52374 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 417 ms
+2025-12-21T17:15:56.792+08:00  WARN 52374 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'productServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.sweet.service.mapper.ProductMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2025-12-21T17:15:56.793+08:00  INFO 52374 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-12-21T17:15:56.841+08:00  INFO 52374 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-21T17:15:56.846+08:00 ERROR 52374 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'productServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.sweet.service.mapper.ProductMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1459)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1228)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1130)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:990)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.sweet.app.Application.main(Application.java:15)
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.sweet.service.mapper.ProductMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:2315)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1733)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+	... 22 common frames omitted
+
+2025-12-21T17:16:48.428+08:00  INFO 52489 --- [main] com.sweet.app.Application                : Starting Application using Java 21.0.9 with PID 52489 (/Users/whr/programming/javaWork/sweet/sweet-app/target/classes started by whr in /Users/whr/programming/javaWork/sweet)
+2025-12-21T17:16:48.429+08:00  INFO 52489 --- [main] com.sweet.app.Application                : No active profile set, falling back to 1 default profile: "default"
+2025-12-21T17:16:48.847+08:00  INFO 52489 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-12-21T17:16:48.853+08:00  INFO 52489 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-21T17:16:48.853+08:00  INFO 52489 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-12-21T17:16:48.872+08:00  INFO 52489 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/app]    : Initializing Spring embedded WebApplicationContext
+2025-12-21T17:16:48.872+08:00  INFO 52489 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 429 ms
+2025-12-21T17:16:48.917+08:00  WARN 52489 --- [main] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [0] datasource,Please add your primary datasource or check your configuration
+2025-12-21T17:16:49.183+08:00  INFO 52489 --- [main] m.e.s.MybatisPlusApplicationContextAware : Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6a66a204
+2025-12-21T17:16:49.229+08:00  WARN 52489 --- [main] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.sweet.service.mapper.Attribute".
+2025-12-21T17:16:49.229+08:00  WARN 52489 --- [main] c.b.m.core.injector.DefaultSqlInjector   : interface com.sweet.service.mapper.Attribute ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-12-21T17:16:49.250+08:00  INFO 52489 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/app'
+2025-12-21T17:16:49.254+08:00  INFO 52489 --- [main] com.sweet.app.Application                : Started Application in 1.028 seconds (process running for 1.142)
+2025-12-21T17:16:49.255+08:00  WARN 52489 --- [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-12-21T17:16:49.255+08:00  WARN 52489 --- [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-12-21T17:16:51.476+08:00  INFO 52489 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/app]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-21T17:16:51.476+08:00  INFO 52489 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-21T17:16:51.477+08:00  INFO 52489 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-12-21T17:16:51.847+08:00  INFO 52489 --- [http-nio-8081-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 59 ms
+2025-12-21T17:17:27.695+08:00  INFO 52489 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-21T17:17:29.614+08:00  INFO 52535 --- [main] com.sweet.app.Application                : Starting Application using Java 21.0.9 with PID 52535 (/Users/whr/programming/javaWork/sweet/sweet-app/target/classes started by whr in /Users/whr/programming/javaWork/sweet)
+2025-12-21T17:17:29.615+08:00  INFO 52535 --- [main] com.sweet.app.Application                : No active profile set, falling back to 1 default profile: "default"
+2025-12-21T17:17:30.039+08:00  INFO 52535 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-12-21T17:17:30.045+08:00  INFO 52535 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-21T17:17:30.045+08:00  INFO 52535 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-12-21T17:17:30.062+08:00  INFO 52535 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/app]    : Initializing Spring embedded WebApplicationContext
+2025-12-21T17:17:30.062+08:00  INFO 52535 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 432 ms
+2025-12-21T17:17:30.110+08:00  WARN 52535 --- [main] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource initial loaded [0] datasource,Please add your primary datasource or check your configuration
+2025-12-21T17:17:30.229+08:00  WARN 52535 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'openApiConfig' defined in file [/Users/whr/programming/javaWork/sweet/sweet-doc/target/classes/com/sweet/doc/config/OpenApiConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.sweet.doc.config.SweetDocPropertiesConfig' available: expected single matching bean but found 2: sweetDocPropertiesConfig,sweet.doc-com.sweet.doc.config.SweetDocPropertiesConfig
+2025-12-21T17:17:30.230+08:00  INFO 52535 --- [main] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource start closing ....
+2025-12-21T17:17:30.230+08:00  INFO 52535 --- [main] c.b.d.d.DynamicRoutingDataSource         : dynamic-datasource all closed success,bye
+2025-12-21T17:17:30.231+08:00  INFO 52535 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-12-21T17:17:30.282+08:00  INFO 52535 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-21T17:17:30.288+08:00 ERROR 52535 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.sweet.doc.config.OpenApiConfig required a single bean, but 2 were found:
+	- sweetDocPropertiesConfig: defined in file [/Users/whr/programming/javaWork/sweet/sweet-doc/target/classes/com/sweet/doc/config/SweetDocPropertiesConfig.class]
+	- sweet.doc-com.sweet.doc.config.SweetDocPropertiesConfig: defined in unknown location
+
+This may be due to missing parameter name information
+
+Action:
+
+Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
+
+Ensure that your compiler is configured to use the '-parameters' flag.
+You may need to update both your build tool settings as well as your IDE.
+(See https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-6.1-Release-Notes#parameter-name-retention)
+
+

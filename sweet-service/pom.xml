@@ -19,8 +19,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>com.sweet</groupId>
+            <artifactId>sweet-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sweet</groupId>
+            <artifactId>sweet-oss</artifactId>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -31,12 +35,23 @@
             <artifactId>mybatis-plus-jsqlparser</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+<!--        swagger-ui的注解用-->
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

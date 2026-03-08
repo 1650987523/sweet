@@ -26,4 +26,62 @@ public class ResponseEntity<T> implements Serializable {
         return responseEntity;
     }
 
+    public static <T> ResponseEntity<T> success(String msg, T data) {
+        ResponseEntity<T> responseEntity = new ResponseEntity<>();
+        responseEntity.setData(data);
+        responseEntity.setCode(ResponseCode.SUCCESS);
+        responseEntity.setMsg(msg);
+        return responseEntity;
+    }
+
+    public static <T> ResponseEntity<T> fail(T data) {
+        ResponseEntity<T> responseEntity = new ResponseEntity<>();
+        responseEntity.setData(data);
+        responseEntity.setCode(ResponseCode.FAIL);
+        return responseEntity;
+    }
+
+    public static <T> ResponseEntity<T> fail(int code, String msg, T data) {
+        ResponseEntity<T> responseEntity = new ResponseEntity<>();
+        responseEntity.setData(data);
+        responseEntity.setCode(code);
+        responseEntity.setMsg(msg);
+        return responseEntity;
+    }
+
+    public static <T> ResponseEntity<T> fail(int code, T data) {
+        ResponseEntity<T> responseEntity = new ResponseEntity<>();
+        responseEntity.setData(data);
+        responseEntity.setCode(code);
+        return responseEntity;
+    }
+
+    public static <T> ResponseEntity<T> fail(int code, String msg) {
+        ResponseEntity<T> responseEntity = new ResponseEntity<>();
+        responseEntity.setCode(code);
+        responseEntity.setMsg(msg);
+        return responseEntity;
+    }
+
+    public static <T> ResponseEntity<T> fail(int code) {
+        ResponseEntity<T> responseEntity = new ResponseEntity<>();
+        responseEntity.setCode(code);
+        return responseEntity;
+    }
+
+    public static <T> ResponseEntity<T> fail(String msg) {
+        ResponseEntity<T> responseEntity = new ResponseEntity<>();
+        responseEntity.setCode(ResponseCode.FAIL);
+        responseEntity.setMsg(msg);
+        return responseEntity;
+    }
+
+    public static <T> ResponseEntity<T> fail(String msg, T data) {
+        ResponseEntity<T> responseEntity = new ResponseEntity<>();
+        responseEntity.setData(data);
+        responseEntity.setCode(ResponseCode.FAIL);
+        responseEntity.setMsg(msg);
+        return responseEntity;
+    }
+
 }

@@ -1,3 +1,2 @@
-com.sweet.service.config.MybatisPlusConfig
-com.sweet.doc.config.OpenApiConfig
-com.sweet.security.config.LogWebMvcConfig
+com.sweet.doc.config.AutoRegisterBeanConfig
+com.sweet.service.config.AutoRegisterBeanConfig

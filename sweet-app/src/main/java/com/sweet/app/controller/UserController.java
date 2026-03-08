@@ -1,5 +1,6 @@
 package com.sweet.app.controller;
 
+import cn.dev33.satoken.util.SaResult;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.sweet.app.dto.LoginDto;
 import com.sweet.app.service.UserService;
@@ -23,10 +24,28 @@ public class UserController {
     private final UserService userService;
     private final JdbcTemplate jdbcTemplate;
 
-    @GetMapping("/login/douyin")
+    @PostMapping("/login/douyin")
     @Operation(summary = "用户登录(通过抖音)", description = "用户登录(通过抖音)")
     public ResponseEntity<LoginVo> loginByDouyin(@RequestBody LoginDto dto) {
         return ResponseEntity.success(userService.loginByDouyin(dto));
+    }
+
+    @PostMapping("/login/password")
+    @Operation(summary = "用户登录(通过密码)", description = "用户登录(通过密码)")
+    public ResponseEntity<LoginVo> loginByPassword(@RequestBody LoginDto dto) {
+        return ResponseEntity.success(userService.loginByPassword(dto));
+    }
+
+    @GetMapping("/is-login")
+    @Operation(summary = "判断用户是否登录", description = "判断用户是否登录")
+    public ResponseEntity<SaResult> isLogin() {
+        return ResponseEntity.success(SaResult.ok("用户已登录"));
+    }
+
+    @PutMapping("/logout")
+    @Operation(summary = "用户登出", description = "用户登出")
+    public ResponseEntity<SaResult> logout() {
+        return ResponseEntity.success(SaResult.ok("用户已登出"));
     }
 
     @GetMapping("/get/currentschema")

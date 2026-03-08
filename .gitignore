@@ -9,9 +9,15 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/encodings.xml
+.idea/misc.xml
+.idea/*.xml
 *.iws
 *.iml
 *.ipr
+
+### Trae ###
+.trae/
 
 ### Eclipse ###
 .apt_generated

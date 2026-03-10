@@ -3,6 +3,9 @@ package com.sweet.service.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.service.dto.ProductStatusDto;
 import com.sweet.service.entity.Product;
+import com.sweet.service.vo.ProductSimpleVo;
+
+import java.util.List;
 
 public interface ProductService extends BaseService<Product>{
 
@@ -23,6 +26,15 @@ public interface ProductService extends BaseService<Product>{
     Page<Product> getPage(Integer pageNo, Integer pageSize, Long storeId, Long categoryId,
                           String productName, Integer status, Boolean isHot,
                           Boolean isRecommend, Boolean isNew);
+
+    /**
+     * 根据门店 ID 和分类 ID 获取商品简列
+     *
+     * @param storeId 门店 ID（可选）
+     * @param categoryId 分类 ID（可选）
+     * @return 商品简列
+     */
+    List<ProductSimpleVo> getProductSimpleList(Long storeId, Long categoryId);
 
     /**
      * 修改商品状态

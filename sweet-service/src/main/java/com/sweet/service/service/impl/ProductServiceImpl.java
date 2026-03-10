@@ -7,13 +7,16 @@ import com.sweet.service.dto.ProductStatusDto;
 import com.sweet.service.entity.Product;
 import com.sweet.service.mapper.ProductMapper;
 import com.sweet.service.service.ProductService;
+import com.sweet.service.vo.ProductSimpleVo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -38,6 +41,26 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductMapper, Product> 
                 .orderByDesc(Product::getSort, Product::getId);
 
         return super.page(page, queryWrapper);
+    }
+
+    @Override
+    public List<ProductSimpleVo> getProductSimpleList(Long storeId, Long categoryId) {
+
+        //查询
+        QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda()
+                .eq(Objects.nonNull(storeId), Product::getStoreId, storeId)
+                .eq(Objects.nonNull(categoryId), Product::getCategoryId, categoryId)
+                .orderByDesc(Product::getSort, Product::getId);
+        List<Product> products = super.list(queryWrapper);
+
+        //返回
+        return Optional.ofNullable(products).orElse(List.of()).stream()
+                .map(product -> new ProductSimpleVo()
+                        .setId(product.getId())
+                        .setCategoryId(product.getCategoryId())
+                        .setProductName(product.getProductName()))
+                .toList();
     }
 
     @Override

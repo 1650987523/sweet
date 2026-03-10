@@ -10,7 +10,7 @@ public class LoginVo {
     private String nickname;
     private String email;
     private String avatar;
-    private String douyinOpenId;
     private int status;
+    private String wechatOpenid;
     private String jwtSaToken;
 }

@@ -1,15 +1,19 @@
 package com.sweet.admin.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sweet.admin.service.ProductBusinessService;
 import com.sweet.common.response.ResponseEntity;
 import com.sweet.service.dto.ProductStatusDto;
 import com.sweet.service.entity.Product;
 import com.sweet.service.service.ProductService;
+import com.sweet.service.vo.ProductSimpleVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(name = "商品管理")
 @RestController
@@ -72,6 +76,17 @@ public class ProductController {
     @PutMapping("/status")
     public ResponseEntity<Boolean> updateStatus(@RequestBody ProductStatusDto dto) {
         return ResponseEntity.success(service.updateStatus(dto));
+    }
+
+    @GetMapping("/simple-list")
+    @Operation(parameters = {
+            @Parameter(name = "storeId", description = "门店 ID"),
+            @Parameter(name = "categoryId", description = "分类 ID")
+    }, summary = "获取商品简列", description = "根据门店 ID 和分类 ID 获取商品简列（ID、分类 ID、商品名称）")
+    public ResponseEntity<List<ProductSimpleVo>> getProductSimpleList(
+            @RequestParam(required = false) Long storeId,
+            @RequestParam(required = false) Long categoryId) {
+        return ResponseEntity.success(service.getProductSimpleList(storeId, categoryId));
     }
 
 }

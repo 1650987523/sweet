@@ -37,9 +37,12 @@ sa-token:
   jwt-secret-key: sdjfiohdsiohfwhqjsaioghfiugdsayugfyugewd
 
 sweet:
+  doc:
+    title: Sweet Admin API
+    version: 1.0.0
+    description: 后台管理端接口文档
   security:
     web-aes-secret: wanglaoban123456  #web端对称加密密钥,用于解析前端传入的密码
-
   oss:
     s3:
       account-id: a621c66281d1c965ebfdc181272e72b2

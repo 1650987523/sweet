@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class BannerBatchCreateDto extends Banner {
+public class BannerBatchSaveDto extends Banner {
 
     @Schema(description = "图片URL列表")
     private List<String> imageUrls;

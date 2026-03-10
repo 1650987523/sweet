@@ -19,6 +19,7 @@ public class AdminConstant {
     public static final String OSS_PRODUCT_PREFIX_SKU = "product/sku/";
     public static final String OSS_PRODUCT_PREFIX_QRCODE = "product/qrcode/";
     public static final String OSS_PRODUCT_PREFIX_CATEGORY = "product/category/";
+    public static final String OSS_PRODUCT_PREFIX_BANNER = "product/banner/";
     public static final String OSS_PRODUCT_PREFIX = "product/";
     public static final String FILE_SUFFIX_PNG = ".png";
     public static final String PATH_SEPARATOR = "/";
@@ -30,4 +31,11 @@ public class AdminConstant {
     public static final String IMAGE_JSONB_KEY_SORT = "sort";
     public static final String IMAGE_JSONB_KEY_DESCRIPTION = "description";
     public static final Integer DEFAULT_IMAGE_SORT = 0;
+
+    /**
+     * Sweet OSS R2 配置相关常量
+     */
+    public static final String OSS_CONFIG_PREFIX = "sweet.oss.s3";
+    public static final String OSS_ENABLED = "enabled";
+    public static final String OSS_ENABLED_VALUE = "true";
 }

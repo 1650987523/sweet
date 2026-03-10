@@ -1,10 +1,9 @@
 package com.sweet.app.vo;
 
-import cn.dev33.satoken.util.SaResult;
 import lombok.Data;
 
 @Data
-public class LoginVo {
+public class LoginResultVo {
     private Integer id;
     private String username;
     private String nickname;

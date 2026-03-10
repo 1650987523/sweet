@@ -9,5 +9,5 @@ public class LoginDto {
 
     private String password;
 
-    private String douyinCode;
+    private String wechatCode;
 }

@@ -30,6 +30,19 @@ sweet:
   doc:
     title: Sweet App API
     version: 1.0.0
-    description: C端用户接口文档
+    description: 小程序端接口文档
   security:
     web-aes-secret: wanglaoban  #web端对称加密密钥,用于解析前端传入的密码
+  we-chat:
+    mini-program:
+      app-id: wxb006756636fbbbd5
+      app-secret: 7aaabe4851418f51ad3aaee9a37497af
+      code2session: https://api.weixin.qq.com/sns/jscode2session
+  oss:
+    s3:
+      account-id: a621c66281d1c965ebfdc181272e72b2
+      access-key-id: 1a9e33e4a060a70a7261eac2af9f6a50
+      secret-access-key: 076ad7729d8aa09fec992599778e59a877748ff01995c866a84762c883d72c91
+      bucket-name: sweet
+      endpoint: https://a621c66281d1c965ebfdc181272e72b2.r2.cloudflarestorage.com
+      custom-domain: https://wanghengrun.cn/

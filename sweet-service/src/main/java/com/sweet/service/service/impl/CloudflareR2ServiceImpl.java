@@ -1,6 +1,5 @@
 package com.sweet.service.service.impl;
 
-import cn.hutool.core.util.URLUtil;
 import com.sweet.common.constant.AdminConstant;
 import com.sweet.oss.config.CloudflarePropertiesConfiguration;
 import com.sweet.service.service.CloudflareR2Service;

@@ -1,6 +1,4 @@
 package com.sweet.oss.config;
-
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -26,7 +24,7 @@ public class CloudflareR2AutoConfiguration {
 
     public CloudflareR2AutoConfiguration(CloudflarePropertiesConfiguration config) {
         this.config = config;
-        log.info("CloudflareR2AutoConfiguration init");
+        log.info("CloudflareR2AutoConfiguration init :{}", config);
     }
 
     @Bean

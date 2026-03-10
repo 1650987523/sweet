@@ -42,6 +42,7 @@
         <sa-token.jwt.version>1.44.0</sa-token.jwt.version>
         <swagger-ui-annotation.version>2.2.38</swagger-ui-annotation.version>
         <software.amazon.awssdk.version>2.21.0</software.amazon.awssdk.version>
+        <wx-java-miniapp.version>4.8.0</wx-java-miniapp.version>
     </properties>
 
     <dependencyManagement>
@@ -138,6 +139,17 @@
                 <groupId>software.amazon.awssdk</groupId>
                 <artifactId>s3</artifactId>
                 <version>${software.amazon.awssdk.version}</version>
+            </dependency>
+            <!-- 微信 Java SDK -->
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-miniapp</artifactId>
+                <version>${wx-java-miniapp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-pay</artifactId>
+                <version>${wx-java-miniapp.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

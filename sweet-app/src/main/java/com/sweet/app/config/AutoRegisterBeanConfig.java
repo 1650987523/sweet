@@ -8,10 +8,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.web.client.RestClient;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 @AllArgsConstructor
-@Import(value = {SaTokenConfig.class, LogWebMvcConfig.class, SecurityPropertiesConfig.class})
+@Import(value = {LogWebMvcConfig.class, SecurityPropertiesConfig.class})
 public class AutoRegisterBeanConfig {
 
     @Bean
@@ -22,6 +24,17 @@ public class AutoRegisterBeanConfig {
     @Bean
     public GlobalExceptionHandler globalExceptionHandler() {
         return new GlobalExceptionHandler();
+    }
 
+    @Bean
+    public RestClient restClient() {
+        return RestClient.create();
+    }
+
+    @Bean
+    public WebClient webClient() {
+        return WebClient.builder()
+                .defaultHeader("Content-Type", "application/json")
+                .build();
     }
 }

@@ -1,8 +1,10 @@
 package com.sweet.admin.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sweet.admin.properties.WechatMiniProgramProperties;
 import com.sweet.common.response.ResponseEntity;
 import com.sweet.service.dto.TableQrcodeDto;
+import com.sweet.service.dto.TableQrcodeGenerateDto;
 import com.sweet.service.entity.TableQrcode;
 import com.sweet.service.service.TableQrcodeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class TableQrCodeController {
 
     private final TableQrcodeService service;
+    private final WechatMiniProgramProperties wechatMiniProgramProperties;
 
     @GetMapping
     @Operation(parameters = {
@@ -62,6 +65,19 @@ public class TableQrCodeController {
     }, summary = "删除桌码图片", description = "根据桌码key删除桌码")
     public ResponseEntity<Boolean> deleteQrcode(@RequestParam String qrcodeUrl) {
         return ResponseEntity.success(service.deleteQrcode(qrcodeUrl));
+    }
+
+    @Operation(summary = "生成桌码(利用微信接口)", description = "生成桌码(利用微信接口)",
+            parameters = {
+                    @Parameter(name = "storeId", description = "店铺id"),
+                    @Parameter(name = "qrcodeNo", description = "桌码编号"),
+            })
+    @PostMapping("/generate/qrcode")
+    public ResponseEntity<String> generateQrcode(@RequestParam Long storeId, @RequestParam String qrcodeNo,
+                                                 @RequestBody TableQrcodeGenerateDto dto) {
+        return ResponseEntity.success(service.generateQrcode(storeId, qrcodeNo, dto,
+                wechatMiniProgramProperties.getAppId(),
+                wechatMiniProgramProperties.getAppSecret()));
     }
 
 }

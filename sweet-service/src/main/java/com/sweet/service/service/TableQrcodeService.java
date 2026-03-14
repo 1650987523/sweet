@@ -2,6 +2,7 @@ package com.sweet.service.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.service.dto.TableQrcodeDto;
+import com.sweet.service.dto.TableQrcodeGenerateDto;
 import com.sweet.service.entity.TableQrcode;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,4 +41,13 @@ public interface TableQrcodeService extends BaseService<TableQrcode>{
      * @return
      */
     boolean updateQrcodeUrl(Integer id, String qrcodeUrl);
+
+    /**
+     * 生成桌码图片(利用微信接口)
+     * @param dto
+     * @param storeId
+     * @param qrcodeNo
+     * @return
+     */
+    String generateQrcode(Long storeId, String qrcodeNo, TableQrcodeGenerateDto dto, String appId, String appSecret);
 }

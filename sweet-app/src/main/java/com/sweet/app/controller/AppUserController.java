@@ -5,12 +5,14 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.sweet.app.dto.LoginDto;
 import com.sweet.app.entity.AppUser;
 import com.sweet.app.service.AppUserService;
+import com.sweet.app.vo.AppUserInfoResVo;
 import com.sweet.common.response.ResponseEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -21,18 +23,6 @@ public class AppUserController {
 
     private final AppUserService userService;
     private final JdbcTemplate jdbcTemplate;
-
-    @GetMapping("/is-login")
-    @Operation(summary = "判断用户是否登录", description = "判断用户是否登录")
-    public ResponseEntity<SaResult> isLogin() {
-        return ResponseEntity.success(SaResult.ok("用户已登录"));
-    }
-
-    @PutMapping("/logout")
-    @Operation(summary = "用户登出", description = "用户登出")
-    public ResponseEntity<SaResult> logout() {
-        return ResponseEntity.success(SaResult.ok("用户已登出"));
-    }
 
     @GetMapping("/get/currentschema")
     @Operation(summary = "获取当前数据库", description = "获取当前数据库")
@@ -62,7 +52,7 @@ public class AppUserController {
 
     @PutMapping("/{userId}")
     @Operation(summary = "更新用户", description = "根据用户id更新用户信息")
-    public ResponseEntity<Boolean> putUser(@PathVariable Integer userId, @RequestBody AppUser user){
+    public ResponseEntity<Boolean> putUser(@PathVariable Long userId, @RequestBody AppUser user){
         user.setId(userId);
         return ResponseEntity.success(userService.updateById(user));
     }
@@ -71,5 +61,20 @@ public class AppUserController {
     @Operation(summary = "删除用户", description = "根据用户id删除用户")
     public ResponseEntity<Boolean> deleteUser(@PathVariable Integer userId){
         return ResponseEntity.success(userService.removeById(userId));
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity<AppUserInfoResVo> getUserInfo(){
+        return ResponseEntity.success(userService.getUserByCurrentToken());
+    }
+
+    @PostMapping("/upload/avatar")
+    public ResponseEntity<String> uploadAvatar(@RequestParam("avatar") MultipartFile file){
+        return ResponseEntity.success(userService.uploadAvatar(file));
+    }
+
+    @DeleteMapping("/delete/avatar")
+    public ResponseEntity<Boolean> deleteAvatar(@RequestParam String avatarUrl){
+        return ResponseEntity.success(userService.deleteAvatar(avatarUrl));
     }
 }

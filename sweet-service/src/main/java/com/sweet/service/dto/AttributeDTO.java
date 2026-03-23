@@ -11,6 +11,7 @@ import java.util.List;
  */
 @Data
 @Accessors(chain = true)
+@Schema(description = "属性 DTO（用于创建/更新属性，包含属性值列表）")
 public class AttributeDTO {
 
     @Schema(description = "属性 ID，更新时需要")

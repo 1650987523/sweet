@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
+@Schema(description = "属性选项 VO")
 public class AttributeOptionVO {
 
     @Schema(description = "属性 ID")

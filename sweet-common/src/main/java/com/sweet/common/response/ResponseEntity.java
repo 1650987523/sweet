@@ -26,6 +26,12 @@ public class ResponseEntity<T> implements Serializable {
         return responseEntity;
     }
 
+    public static <T> ResponseEntity<T> success() {
+        ResponseEntity<T> responseEntity = new ResponseEntity<>();
+        responseEntity.setCode(ResponseCode.SUCCESS);
+        return responseEntity;
+    }
+
     public static <T> ResponseEntity<T> success(String msg, T data) {
         ResponseEntity<T> responseEntity = new ResponseEntity<>();
         responseEntity.setData(data);

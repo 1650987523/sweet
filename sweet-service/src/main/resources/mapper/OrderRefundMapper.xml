@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sweet.service.mapper.OrderRefundMapper">
+
+    <resultMap id="BaseResultMap" type="com.sweet.service.entity.OrderRefund">
+        <id column="id" property="id"/>
+        <result column="refund_no" property="refundNo"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="user_id" property="userId"/>
+        <result column="store_id" property="storeId"/>
+        <result column="order_amount" property="orderAmount"/>
+        <result column="refund_amount" property="refundAmount"/>
+        <result column="actual_refund_amount" property="actualRefundAmount"/>
+        <result column="refund_type" property="refundType"/>
+        <result column="refund_reason" property="refundReason"/>
+        <result column="refund_desc" property="refundDesc"/>
+        <result column="refund_images" property="refundImages" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+        <result column="refund_status" property="refundStatus"/>
+        <result column="audit_user_id" property="auditUserId"/>
+        <result column="audit_user_name" property="auditUserName"/>
+        <result column="audit_time" property="auditTime"/>
+        <result column="audit_remark" property="auditRemark"/>
+        <result column="refund_success_time" property="refundSuccessTime"/>
+        <result column="refund_fail_reason" property="refundFailReason"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="create_by" property="createBy"/>
+        <result column="update_by" property="updateBy"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, refund_no, order_no, user_id, store_id, order_amount, refund_amount,
+        actual_refund_amount, refund_type, refund_reason, refund_desc, refund_images,
+        refund_status, audit_user_id, audit_user_name, audit_time, audit_remark,
+        refund_success_time, refund_fail_reason, create_time, update_time, create_by, update_by
+    </sql>
+
+    <select id="selectByRefundNo" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM app.order_refund
+        WHERE refund_no = #{refundNo}
+    </select>
+
+    <select id="selectByOrderNo" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM app.order_refund
+        WHERE order_no = #{orderNo}
+        ORDER BY create_time DESC
+        LIMIT 1
+    </select>
+</mapper>

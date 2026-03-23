@@ -1,9 +1,12 @@
-package com.sweet.app.vo;
+package com.sweet.service.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
+@Schema(description = "双 Token 响应 VO")
 public class DoubleTokenResVo {
 
     @Schema(description = "访问令牌")

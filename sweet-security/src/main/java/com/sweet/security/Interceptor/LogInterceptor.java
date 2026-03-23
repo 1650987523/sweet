@@ -29,7 +29,7 @@ public class LogInterceptor implements HandlerInterceptor {
         sb.append("URL            : ").append(request.getRequestURL()).append("\n");
         sb.append("Method         : ").append(request.getMethod()).append("\n");
         sb.append("IP             : ").append(getClientIp(request)).append("\n");
-        
+
         if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             sb.append("Controller     : ").append(handlerMethod.getBeanType().getName()).append("\n");
@@ -42,7 +42,7 @@ public class LogInterceptor implements HandlerInterceptor {
             sb.append("Query String   : ").append(queryString).append("\n");
         }
         sb.append("===========================================================================================");
-        
+
         log.info(sb.toString());
 
         return true;
@@ -56,9 +56,6 @@ public class LogInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
         Long startTime = (Long) request.getAttribute(START_TIME);
         long endTime = System.currentTimeMillis();
-        // 避免空指针，虽然preHandle设了值，但如果是其他拦截器返回false导致preHandle没执行完或者没执行到这里，可能会空。
-        // 不过afterCompletion只有在preHandle返回true时才会执行（当前拦截器的preHandle返回true，或者链中之前的返回true）。
-        // 如果当前拦截器preHandle执行了，attr就有值。
         long duration = (startTime != null) ? (endTime - startTime) : 0;
 
         StringBuilder sb = new StringBuilder();
@@ -70,7 +67,7 @@ public class LogInterceptor implements HandlerInterceptor {
             sb.append("Exception      : ").append(ex.getMessage()).append("\n");
         }
         sb.append("===========================================================================================");
-        
+
         log.info(sb.toString());
     }
 
@@ -96,7 +93,6 @@ public class LogInterceptor implements HandlerInterceptor {
         if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
         }
-        // 对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割
         if (ip != null && ip.length() > 15 && ip.contains(",")) {
             ip = ip.substring(0, ip.indexOf(","));
         }

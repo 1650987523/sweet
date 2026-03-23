@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 @TableName(schema = "app", value = "store")
+@Schema(description = "门店实体")
 public class Store {
 
     @TableId(type = IdType.AUTO)

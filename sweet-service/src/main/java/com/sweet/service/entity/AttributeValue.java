@@ -8,9 +8,6 @@ import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
-/**
- * 属性值表
- */
 @Data
 @Accessors(chain = true)
 @TableName(schema = "app", value = "attribute_value")

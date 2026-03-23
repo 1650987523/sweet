@@ -23,26 +23,27 @@ public interface OrderMainService extends BaseService<OrderMain>{
      * @param endTime 结束时间（创建时间）
      * @return 分页结果
      */
-    Page<OrderMain> getPageByCondition(Integer pageNo, Integer pageSize, String orderNo,
+    Page<OrderMain> page(Integer pageNo, Integer pageSize, String orderNo,
                                         Integer userId, Integer storeId,
                                         Integer orderStatus, Integer payStatus,
                                         LocalDateTime startTime, LocalDateTime endTime);
 
     /**
-     * 获取订单详情（包含订单主表信息和明细列表）
+     * 根据 ID 获取订单信息
      *
      * @param id 订单 ID
-     * @return 订单主表信息（明细列表需通过 getOrderDetailsByOrderNo 单独查询）
+     * @return 订单主表信息
      */
-    OrderMain getOrderDetailById(Integer id);
+    OrderMain getInfoById(Integer id);
 
     /**
-     * 根据订单号获取订单详情（包含订单主表信息和明细列表）
+     * 根据订单号和用户 ID 获取订单信息
      *
      * @param orderNo 订单号
-     * @return 订单主表信息（明细列表需通过 getOrderDetailsByOrderNo 单独查询）
+     * @param userId 用户 ID
+     * @return 订单主表信息
      */
-    OrderMain getOrderDetailByOrderNo(String orderNo);
+    OrderMain getInfo(String orderNo, Integer userId);
 
     /**
      * 根据订单号获取订单明细列表
@@ -51,4 +52,13 @@ public interface OrderMainService extends BaseService<OrderMain>{
      * @return 订单明细列表
      */
     List<OrderDetail> getOrderDetailsByOrderNo(String orderNo);
+
+    /**
+     * 更新订单状态
+     *
+     * @param orderNo 订单号
+     * @param orderStatus 订单状态
+     * @return 是否更新成功
+     */
+    boolean updateStatus(String orderNo, Integer orderStatus);
 }

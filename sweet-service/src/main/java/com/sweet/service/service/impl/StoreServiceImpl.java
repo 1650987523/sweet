@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Objects;
 
 @Slf4j
@@ -28,9 +29,22 @@ public class StoreServiceImpl extends BaseServiceImpl<StoreMapper, Store> implem
     }
 
     @Override
-    public java.util.List<Store> listAll(Integer storeId) {
+    public List<Store> getStoresById(Integer storeId) {
         QueryWrapper<Store> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(Objects.nonNull(storeId), Store::getId, storeId);
         return super.list(queryWrapper);
+    }
+
+    @Override
+    public List<Store> getAllStores() {
+        return super.list();
+    }
+
+    @Override
+    public Page<Store> getAppPage(Integer pageNo, Integer pageSize, String storeName) {
+        Page<Store> page = new Page<>(pageNo, pageSize);
+        QueryWrapper<Store> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().like(StringUtils.hasText(storeName), Store::getName, storeName);
+        return super.page(page, queryWrapper);
     }
 }

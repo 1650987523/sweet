@@ -37,7 +37,7 @@ public class StoreController {
     @GetMapping("/list")
     @Operation(summary = "获取门店列表", description = "获取门店列表（用于下拉选项，支持传入 storeId 筛选）")
     public ResponseEntity<java.util.List<Store>> listAll(@RequestParam(required = false) Integer storeId) {
-        return ResponseEntity.success(service.listAll(storeId));
+        return ResponseEntity.success(service.getStoresById(storeId));
     }
 
     @PostMapping

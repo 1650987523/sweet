@@ -47,7 +47,7 @@ public class OrderMainController {
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startTime,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endTime) {
 
-        return ResponseEntity.success(service.getPageByCondition(pageNo, pageSize, orderNo, userId, storeId, orderStatus, payStatus, startTime, endTime));
+        return ResponseEntity.success(service.page(pageNo, pageSize, orderNo, userId, storeId, orderStatus, payStatus, startTime, endTime));
 
     }
 
@@ -56,7 +56,7 @@ public class OrderMainController {
             @Parameter(name = "id", description = "订单 id")
     }, summary = "获取订单详情", description = "获取订单详情（包含订单主表和明细列表）")
     public ResponseEntity<OrderDetailVo> getDetail(@PathVariable Integer id) {
-        OrderMain orderMain = service.getOrderDetailById(id);
+        OrderMain orderMain = service.getInfoById(id);
         if (orderMain == null) {
             return ResponseEntity.fail("订单不存在");
         }

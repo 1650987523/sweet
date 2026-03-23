@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Accessors(chain = true)
-public class UserInfoResVo {
+public class AppUserInfoResVo {
 
     @Schema(description = "用户ID")
     private Long userId;
@@ -21,4 +21,7 @@ public class UserInfoResVo {
 
     @Schema(description = "昵称")
     private String avatar;
+
+    @Schema(description = "用户等级")
+    private Integer level;
 }

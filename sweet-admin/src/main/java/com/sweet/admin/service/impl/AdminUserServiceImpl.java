@@ -61,7 +61,10 @@ public class AdminUserServiceImpl extends BaseServiceImpl<AdminUserMapper, Admin
         Assert.isTrue(ret, "密码错误");
 
         //登录并生成 jwt token
-        StpUtil.login(adminUser.getId(), new SaLoginParameter().setExtra("username", username));
+        SaLoginParameter saLoginParameter = new SaLoginParameter()
+                .setExtra(AdminConstant.USER_NAME_KEY, username)
+                .setExtra(AdminConstant.USER_ID_KEY, adminUser.getId());
+        StpUtil.login(adminUser.getId(), saLoginParameter);
         String tokenValue = StpUtil.getTokenValue();
 
         //角色列表

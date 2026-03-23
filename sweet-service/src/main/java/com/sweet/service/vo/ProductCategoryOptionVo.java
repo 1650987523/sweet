@@ -6,6 +6,7 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
+@Schema(description = "商品分类选项 VO")
 public class ProductCategoryOptionVo {
     @Schema(description = "分类 ID")
     private Long id;

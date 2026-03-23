@@ -10,6 +10,7 @@ import java.util.Map;
 
 @Data
 @TableName(schema = "app", value = "product_log")
+@Schema(description = "商品操作日志实体")
 public class ProductLog {
 
     @TableId(type = IdType.AUTO)

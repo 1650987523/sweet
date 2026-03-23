@@ -8,9 +8,6 @@ import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
-/**
- * 轮播图实体
- */
 @Data
 @TableName(schema = "app", value = "banner")
 @Accessors(chain = true)

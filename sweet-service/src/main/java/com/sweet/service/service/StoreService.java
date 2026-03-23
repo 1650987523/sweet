@@ -3,6 +3,8 @@ package com.sweet.service.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.service.entity.Store;
 
+import java.util.List;
+
 public interface StoreService extends BaseService<Store>{
 
     /**
@@ -21,5 +23,20 @@ public interface StoreService extends BaseService<Store>{
      * @param storeId 门店 ID（可选，传入则根据 ID 获取，否则获取所有）
      * @return 门店列表
      */
-    java.util.List<Store> listAll(Integer storeId);
+    List<Store> getStoresById(Integer storeId);
+
+    /**
+     * 获取所有门店列表
+     * @return
+     */
+    List<Store> getAllStores();
+
+    /**
+     * app界面所需分页数据（用于展示门店列表）
+     * @param pageNo
+     * @param pageSize
+     * @param storeName
+     * @return
+     */
+    Page<Store> getAppPage(Integer pageNo, Integer pageSize, String storeName);
 }

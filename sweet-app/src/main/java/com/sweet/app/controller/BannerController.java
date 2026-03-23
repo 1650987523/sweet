@@ -22,10 +22,8 @@ public class BannerController {
     @GetMapping("/list")
     @Operation(parameters = {
             @Parameter(name = "storeId", description = "门店 ID")
-    }, summary = "获取有效轮播图列表", description = "获取当前有效的轮播图列表")
-    public ResponseEntity<List<Banner>> getValidBanners(
-            @RequestParam(required = false) Long storeId) {
-
+    }, summary = "获取上架轮播图列表", description = "获取当前上架的轮播图列表,0代表不属于任何门店，即全店通用")
+    public ResponseEntity<List<Banner>> getValidBanners(@RequestParam(required = false) Long storeId) {
         return ResponseEntity.success(service.getValidBanners(storeId));
     }
 }

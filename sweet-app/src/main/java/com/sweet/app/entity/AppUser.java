@@ -6,16 +6,18 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.util.Date;
 
 @Data
 @TableName("app_user")
+@Accessors(chain = true)
 public class AppUser {
 
     @TableId(type = IdType.AUTO)
     @Schema(description = "用户ID")
-    private Integer id;
+    private Long id;
 
     @Schema(description = "用户名")
     private String username;
@@ -38,14 +40,8 @@ public class AppUser {
     @Schema(description = "头像")
     private String avatar;
 
-    @Schema(description = "抖音openid")
-    private String douyinOpenId;
-
     @Schema(description = "微信openid")
     private String wechatOpenid;
-
-    @Schema(description = "支付宝openid")
-    private String alipayOpenid;
 
     @Schema(description = "登录类型")
     private String loginType;
@@ -63,5 +59,8 @@ public class AppUser {
 
     @Schema(description = "更新人")
     private String updateBy;
+
+    @Schema(description = "用户等级")
+    private Integer level;
 
 }

@@ -1,8 +1,10 @@
 package com.sweet.service.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.common.constant.AdminConstant;
+import com.sweet.common.enums.CategoryStatusEnum;
 import com.sweet.common.util.FileExtUtil;
 import com.sweet.service.dto.ProductCategoryDto;
 import com.sweet.service.entity.ProductCategory;
@@ -108,6 +110,16 @@ public class ProductCategoryServiceImpl extends BaseServiceImpl<ProductCategoryM
         BeanUtils.copyProperties(dto, entity);
         entity.setIcon(iconUrl);
         return super.updateById(entity);
+    }
+
+    @Override
+    public List<ProductCategory> getAppProductCategories(Long storeId) {
+        QueryWrapper<ProductCategory> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda()
+                .eq(ProductCategory::getStoreId, storeId)
+                .eq(ProductCategory::getStatus, CategoryStatusEnum.NORMAL.getCode())
+                .eq(ProductCategory::getParentId, 0);
+        return super.list(queryWrapper);
     }
 
     /**

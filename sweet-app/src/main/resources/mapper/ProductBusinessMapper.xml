@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sweet.app.mapper.ProductBusinessMapper">
+
+    <select id="selectSkuIdByAttrs" resultType="com.sweet.app.vo.SelectSkuVo">
+        SELECT
+            psar.sku_id
+        FROM app.product_sku ps
+        LEFT JOIN app.product_sku_attribute_relation psar ON ps.id = psar.sku_id
+        WHERE
+            ps.product_id = #{productId}
+        AND (psar.attribute_id, psar.attribute_value_id) IN
+        <foreach collection="skuAttrs" item="item" open="(" separator="," close=")">
+            (#{item.attributeId}, #{item.attributeValueId})
+        </foreach>
+        GROUP BY psar.sku_id
+        HAVING COUNT(*) = #{count}
+<!--        LIMIT 1-->
+    </select>
+</mapper>

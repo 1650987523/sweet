@@ -63,7 +63,7 @@ public class Product {
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<Map<String, Object>> sliderImages;
 
-    @Schema(description = "商品详细描述（HTML）")
+    @Schema(description = "商品详细描述（Markdown）")
     private String detail;
 
     @Schema(description = "商品标签（JSON 数组）")

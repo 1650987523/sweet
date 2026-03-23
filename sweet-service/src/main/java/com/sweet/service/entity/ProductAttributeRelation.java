@@ -8,9 +8,6 @@ import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
-/**
- * 商品属性关联表
- */
 @Data
 @Accessors(chain = true)
 @TableName(schema = "app", value = "product_attribute_relation")

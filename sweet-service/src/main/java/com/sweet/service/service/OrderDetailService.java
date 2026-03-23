@@ -24,4 +24,11 @@ public interface OrderDetailService extends BaseService<OrderDetail>{
      * @return 订单明细列表
      */
     List<OrderDetail> getOrderDetailsByOrderNo(String orderNo);
+
+    /**
+     * 根据订单号列表获取订单明细列表
+     * @param orderNos
+     * @return
+     */
+    List<OrderDetail> getOrderDetailsByOrderNos(List<String> orderNos);
 }

@@ -12,6 +12,7 @@ import java.util.List;
  */
 @Data
 @Accessors(chain = true)
+@Schema(description = "属性及属性值 VO")
 public class AttributeWithValueVO {
 
     @Schema(description = "属性 ID")

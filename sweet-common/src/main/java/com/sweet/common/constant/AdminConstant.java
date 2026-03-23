@@ -38,4 +38,7 @@ public class AdminConstant {
     public static final String OSS_CONFIG_PREFIX = "sweet.oss.s3";
     public static final String OSS_ENABLED = "enabled";
     public static final String OSS_ENABLED_VALUE = "true";
+
+    public static final String USER_ID_KEY = "userId";
+    public static final String USER_NAME_KEY = "username";
 }

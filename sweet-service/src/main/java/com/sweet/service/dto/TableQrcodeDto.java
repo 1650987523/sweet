@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @Accessors(chain = true)
+@Schema(description = "桌码 DTO")
 public class TableQrcodeDto extends TableQrcode {
 
     @Schema(description = "桌码图片文件")

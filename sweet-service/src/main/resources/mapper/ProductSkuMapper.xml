@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sweet.service.mapper.ProductSkuMapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="BaseResultMap" type="com.sweet.service.entity.ProductSku">
+<!--        <id column="id" property="id"/>-->
+<!--        <result column="product_id" property="productId"/>-->
+        <result column="specs" property="specs"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+<!--        <result column="price" property="price"/>-->
+<!--        <result column="stock" property="stock"/>-->
+<!--        <result column="sales" property="sales"/>-->
+        <result column="images" property="images"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+<!--        <result column="status" property="status"/>-->
+<!--        <result column="create_time" property="createTime"/>-->
+<!--        <result column="update_time" property="updateTime"/>-->
+    </resultMap>
+
+    <!-- 扣减库存（普通 UPDATE，依赖调用方事先加锁） -->
+    <update id="reduceStock">
+        UPDATE app.product_sku
+        SET stock = stock - #{quantity},
+            update_time = NOW()
+        WHERE id = #{skuId} AND stock >= #{quantity}
+    </update>
+
+    <!-- 查询库存（行锁） -->
+    <select id="selectForUpdate" resultMap="BaseResultMap">
+        SELECT * FROM app.product_sku
+        WHERE id = #{skuId}
+        FOR UPDATE
+    </select>
+
+    <!-- 恢复库存（行锁） -->
+    <update id="addStock">
+        UPDATE app.product_sku
+        SET stock = stock + #{quantity},
+            update_time = NOW()
+        WHERE id = #{skuId}
+    </update>
+
+</mapper>

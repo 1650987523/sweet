@@ -21,7 +21,7 @@ spring:
           driver-class-name: org.postgresql.Driver
 
 mybatis-plus:
-  mapper-locations: classpath:mapper/admin/*.xml
+  mapper-locations: classpath:mapper/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl

@@ -1,6 +1,8 @@
 package com.sweet.service.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.service.entity.OrderDetail;
 import com.sweet.service.entity.OrderMain;
@@ -24,10 +26,17 @@ public class OrderMainServiceImpl extends BaseServiceImpl<OrderMainMapper, Order
     private final OrderDetailService orderDetailService;
 
     @Override
-    public Page<OrderMain> getPageByCondition(Integer pageNo, Integer pageSize, String orderNo,
-                                               Integer userId, Integer storeId,
-                                               Integer orderStatus, Integer payStatus,
-                                               LocalDateTime startTime, LocalDateTime endTime) {
+    public Page<OrderMain> page(Integer pageNo, Integer pageSize, String orderNo,
+                                Integer userId, Integer storeId,
+                                Integer orderStatus, Integer payStatus,
+                                LocalDateTime startTime, LocalDateTime endTime) {
+        if(Objects.isNull(userId)){
+            userId = StpUtil.getLoginIdAsInt();
+        }
+        if(Objects.nonNull(storeId) && storeId.equals(0)){
+            storeId = null;
+        }
+
         Page<OrderMain> page = new Page<>(pageNo, pageSize);
 
         QueryWrapper<OrderMain> queryWrapper = new QueryWrapper<>();
@@ -39,26 +48,34 @@ public class OrderMainServiceImpl extends BaseServiceImpl<OrderMainMapper, Order
                 .eq(Objects.nonNull(payStatus), OrderMain::getPayStatus, payStatus)
                 .ge(Objects.nonNull(startTime), OrderMain::getCreateTime, startTime)
                 .le(Objects.nonNull(endTime), OrderMain::getCreateTime, endTime);
+        queryWrapper.lambda().orderByDesc(OrderMain::getCreateTime);
 
         return super.page(page, queryWrapper);
     }
 
     @Override
-    public OrderMain getOrderDetailById(Integer id) {
-        // 获取订单主表信息
+    public OrderMain getInfoById(Integer id) {
         return super.getById(id);
     }
 
     @Override
-    public OrderMain getOrderDetailByOrderNo(String orderNo) {
-        // 获取订单主表信息
+    public OrderMain getInfo(String orderNo, Integer userId) {
         QueryWrapper<OrderMain> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(OrderMain::getOrderNo, orderNo);
+        queryWrapper.lambda()
+                .eq(StringUtils.hasText(orderNo), OrderMain::getOrderNo, orderNo)
+                .eq(Objects.nonNull(userId), OrderMain::getUserId, userId);
         return super.getOne(queryWrapper);
     }
 
     @Override
     public List<OrderDetail> getOrderDetailsByOrderNo(String orderNo) {
         return orderDetailService.getOrderDetailsByOrderNo(orderNo);
+    }
+
+    @Override
+    public boolean updateStatus(String orderNo, Integer orderStatus) {
+        UpdateWrapper<OrderMain> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.lambda().eq(OrderMain::getOrderNo, orderNo).set(OrderMain::getOrderStatus, orderStatus);
+        return super.update(updateWrapper);
     }
 }

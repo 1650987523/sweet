@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
+@Schema(description = "属性值 DTO")
 public class AttributeValueDTO {
 
     @Schema(description = "属性值 ID，更新时需要")

@@ -1,9 +1,10 @@
 package com.sweet.admin.config;
 
-import cn.dev33.satoken.interceptor.SaInterceptor;
 import cn.dev33.satoken.jwt.StpLogicJwtForStateless;
 import cn.dev33.satoken.stp.StpLogic;
-import com.sweet.admin.Interceptor.ApiPermissionInterceptor;
+import com.sweet.admin.Interceptor.AuthInterceptor;
+import com.sweet.common.constant.InterceptorExcludePatterns;
+import com.sweet.security.Interceptor.LogInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,15 +18,17 @@ public class SaTokenConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        // Sa-Token 登录验证拦截器
-        registry.addInterceptor(new SaInterceptor(handler ->
-            log.info("sa-token 权限拦截")
-        )).addPathPatterns("/**").excludePathPatterns("/admin/user/login").excludePathPatterns("/admin/user/info");
+        // 日志拦截器（记录所有请求，静态资源除外）
+        registry.addInterceptor(new LogInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns(InterceptorExcludePatterns.STATIC_RESOURCE)
+                .order(0);
 
-        // 接口权限拦截器（从数据库动态加载权限配置）
-//        registry.addInterceptor(new ApiPermissionInterceptor())
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/admin/user/login", "/admin/user/info");
+        // 权限拦截器（验证管理员是否登录）
+        registry.addInterceptor(new AuthInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns(InterceptorExcludePatterns.forAdmin())
+                .order(1);
     }
 
     @Bean

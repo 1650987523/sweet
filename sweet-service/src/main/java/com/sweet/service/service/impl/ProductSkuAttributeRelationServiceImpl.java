@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -44,7 +43,7 @@ public class ProductSkuAttributeRelationServiceImpl extends BaseServiceImpl<Prod
 
     @Override
     public boolean removeBatchByIds(List<Long> ids) {
-        if (ObjectUtils.isEmpty(ids)) {
+        if (CollectionUtils.isEmpty(ids)) {
             return false;
         }
         return super.removeByIds(ids);

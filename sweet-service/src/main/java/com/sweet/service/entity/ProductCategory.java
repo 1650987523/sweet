@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @TableName(schema = "app", value = "product_category")
 @Accessors(chain = true)
+@Schema(description = "商品分类实体")
 public class ProductCategory {
 
     @TableId(type = IdType.AUTO)

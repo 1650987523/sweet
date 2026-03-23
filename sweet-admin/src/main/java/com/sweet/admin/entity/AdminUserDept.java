@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 @TableName(schema = "admin", value = "admin_user_dept")
+@Schema(description = "管理部门用户关联实体")
 public class AdminUserDept {
 
     @TableId(type = IdType.AUTO)

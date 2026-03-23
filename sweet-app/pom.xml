@@ -38,6 +38,16 @@
             <groupId>com.sweet</groupId>
             <artifactId>sweet-service</artifactId>
         </dependency>
+        <!-- 微信小程序 SDK -->
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-miniapp</artifactId>
+        </dependency>
+        <!-- 微信支付 SDK -->
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-pay</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

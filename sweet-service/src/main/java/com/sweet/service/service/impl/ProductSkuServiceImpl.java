@@ -1,5 +1,7 @@
 package com.sweet.service.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.service.entity.ProductSku;
@@ -11,12 +13,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Slf4j
 @Service
 @AllArgsConstructor
 public class ProductSkuServiceImpl extends BaseServiceImpl<ProductSkuMapper, ProductSku> implements ProductSkuService {
+
+    private final ProductSkuMapper productSkuMapper;
 
     @Override
     public Page<ProductSku> getPage(Integer pageNo, Integer pageSize, Long productId) {
@@ -48,6 +51,39 @@ public class ProductSkuServiceImpl extends BaseServiceImpl<ProductSkuMapper, Pro
     @Override
     public List<Long> getSkuIdsByProductId(Long productId) {
         List<ProductSku> productSkus = this.getByProductId(productId);
-        return Optional.ofNullable(productSkus).orElse(List.of()).stream().map(ProductSku::getId).toList();
+        return productSkus.stream().map(ProductSku::getId).toList();
+    }
+
+    @Override
+    public ProductSku getSku(Long id, Long productId) {
+        QueryWrapper<ProductSku> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(ProductSku::getProductId, productId)
+                .eq(ProductSku::getId, id);
+        return super.getOne(queryWrapper);
+    }
+
+    @Override
+    public boolean reduceStock(Long skuId, Integer quantity) {
+        int affected = productSkuMapper.reduceStock(skuId, quantity);
+        return affected > 0;
+    }
+
+    @Override
+    public ProductSku selectForUpdate(Long skuId) {
+        return productSkuMapper.selectForUpdate(skuId);
+    }
+
+    @Override
+    public List<ProductSku> getByIds(List<Long> skuIds) {
+        if (CollectionUtils.isEmpty(skuIds)) {
+            return List.of();
+        }
+        return super.list(Wrappers.<ProductSku>lambdaQuery()
+                .in(ProductSku::getId, skuIds));
+    }
+
+    @Override
+    public void addStock(Long skuId, Integer quantity) {
+        productSkuMapper.addStock(skuId, quantity);
     }
 }

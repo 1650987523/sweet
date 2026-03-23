@@ -5,26 +5,40 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=app&useSSL=false&stringtype=unspecified
-#    username:
-#    password:
-    driver-class-name: org.postgresql.Driver
+    dynamic:
+      primary: app
+      strict: true  #严格匹配数据源模式
+      datasource:
+        app:
+          url: jdbc:postgresql://localhost:5432/postgres?currentSchema=app&useSSL=false&stringtype=unspecified
+          #          username:
+          #          password:
+          driver-class-name: org.postgresql.Driver
+        admin:
+          url: jdbc:postgresql://localhost:5432/postgres?currentSchema=admin&useSSL=false&stringtype=unspecified
+          #          username:
+          #          password:
+          driver-class-name: org.postgresql.Driver
 
 mybatis-plus:
-  mapper-locations: classpath:mapper/app/*.xml
+  mapper-locations: classpath*:mapper/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
 
 sa-token:
-  token-name: jwt-sa-token
-  timeout: 2592000
-  active-timeout: -1
+  token-name: Authorization
   is-concurrent: true
   is-share: false
   token-style: tik
   is-log: true
   jwt-secret-key: sdjfiohdsiohfwhqjsaioghfiugdsayugfyugewd
+
+  # 2. 双Token配置（核心中的核心）
+  access-token-timeout: 3024000 # AccessToken有效期，单位：秒（35天，可自定义）
+  refresh-token-timeout: 15120000 # RefreshToken有效期，单位：秒（70天，可自定义）
+  refresh-token-single: true # 是否同一账号只生成一个RefreshToken（true更安全，避免多刷新令牌泄露）
+
 
 sweet:
   doc:
@@ -35,9 +49,15 @@ sweet:
     web-aes-secret: wanglaoban  #web端对称加密密钥,用于解析前端传入的密码
   we-chat:
     mini-program:
+      enabled: true
       app-id: wxb006756636fbbbd5
       app-secret: 7aaabe4851418f51ad3aaee9a37497af
-      code2session: https://api.weixin.qq.com/sns/jscode2session
+    pay:
+      enabled: true
+      mch-id:
+      private-key:
+      certificate-serial-no:
+      api-v3-key:
   oss:
     s3:
       account-id: a621c66281d1c965ebfdc181272e72b2

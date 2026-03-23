@@ -1,9 +1,9 @@
-package com.sweet.app.enums;
+package com.sweet.common.enums;
 
 public enum BannerStatusEnum {
 
-    ENABLE(1, "上架"),
-    DISABLE(0, "下架");
+    ONLINE(1, "上架"),
+    OFFLINE(0, "下架");
 
     private final int code;
     private final String desc;

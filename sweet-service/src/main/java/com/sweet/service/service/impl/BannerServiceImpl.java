@@ -1,9 +1,11 @@
 package com.sweet.service.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sweet.common.constant.AdminConstant;
+import com.sweet.common.enums.BannerStatusEnum;
 import com.sweet.common.util.FileExtUtil;
 import com.sweet.service.dto.BannerBatchSaveDto;
 import com.sweet.service.dto.BannerUpdateStatusDto;
@@ -64,9 +66,9 @@ public class BannerServiceImpl extends BaseServiceImpl<BannerMapper, Banner> imp
 
     @Override
     public List<Banner> getValidBanners(Long storeId) {
-        LocalDateTime now = LocalDateTime.now();
-
-       return null;
+        QueryWrapper<Banner> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(Banner::getStoreId, storeId).eq(Banner::getStatus, BannerStatusEnum.ONLINE.getCode());
+        return super.list(queryWrapper);
     }
 
     @Override

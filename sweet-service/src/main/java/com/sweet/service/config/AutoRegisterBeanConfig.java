@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({MybatisPlusConfig.class})
-@ComponentScan(basePackages = {"com.sweet.service.service"})
+@ComponentScan(basePackages = {"com.sweet.service.service","com.sweet.service.properties"})
 @MapperScan(basePackages = {"com.sweet.service.mapper"})
 public class AutoRegisterBeanConfig {
 

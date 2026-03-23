@@ -1,6 +1,5 @@
 package com.sweet.app.config;
 
-import com.sweet.security.config.LogWebMvcConfig;
 import com.sweet.security.config.SecurityPropertiesConfig;
 import com.sweet.security.handler.GlobalExceptionHandler;
 import com.sweet.security.utils.LoginPassWordUtil;
@@ -13,7 +12,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 @AllArgsConstructor
-@Import(value = {LogWebMvcConfig.class, SecurityPropertiesConfig.class})
+@Import(value = {SecurityPropertiesConfig.class})
 public class AutoRegisterBeanConfig {
 
     @Bean

@@ -57,4 +57,11 @@ public interface ProductCategoryService extends BaseService<ProductCategory>{
      * @return 是否更新成功
      */
     boolean updateById(ProductCategoryDto dto);
+
+    /**
+     * 获取应用商品分类（按门店）
+     * @param storeId
+     * @return
+     */
+    List<ProductCategory> getAppProductCategories(Long storeId);
 }

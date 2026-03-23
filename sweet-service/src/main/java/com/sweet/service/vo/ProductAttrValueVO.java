@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-@Schema(description = "属性值项")
+@Schema(description = "属性值项 VO")
 public class ProductAttrValueVO {
 
     @Schema(description = "属性值 ID")

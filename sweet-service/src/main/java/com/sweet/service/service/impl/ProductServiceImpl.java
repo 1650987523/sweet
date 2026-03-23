@@ -76,4 +76,15 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductMapper, Product> 
         updateWrapper.lambda().eq(Product::getId, id).set(Product::getStatus, status);
         return super.update(updateWrapper);
     }
+
+    @Override
+    public List<Product> getAppProducts(Long storeId, List<Long> categoryIds, String productName) {
+        QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda()
+                .eq(Objects.nonNull(storeId), Product::getStoreId, storeId)
+                .in(Objects.nonNull(categoryIds), Product::getCategoryId, categoryIds)
+                .like(StringUtils.hasText(productName), Product::getProductName, productName)
+                .orderByDesc(Product::getSort, Product::getId);
+        return super.list(queryWrapper);
+    }
 }

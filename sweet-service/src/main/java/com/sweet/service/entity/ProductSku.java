@@ -2,6 +2,7 @@ package com.sweet.service.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sweet.service.vo.ProductSkuSpecVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -25,7 +26,7 @@ public class ProductSku {
 
     @Schema(description = "SKU 规格定义（JSON 格式）")
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<ProductSkuSpecVO> specs;
+    private List<Map<String, Object>> specs;
 
     @Schema(description = "售价")
     private Long price;
@@ -45,9 +46,11 @@ public class ProductSku {
 
     @Schema(description = "创建时间")
     @TableField(fill = FieldFill.INSERT)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
 
     @Schema(description = "更新时间")
     @TableField(fill = FieldFill.INSERT_UPDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime updateTime;
 }

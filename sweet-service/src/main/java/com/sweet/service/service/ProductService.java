@@ -41,4 +41,13 @@ public interface ProductService extends BaseService<Product>{
      * @return
      */
     Boolean updateStatus(ProductStatusDto dto);
+
+    /**
+     * 获取应用商品列表
+     * @param storeId
+     * @param categoryIds
+     * @param productName
+     * @return
+     */
+    List<Product> getAppProducts(Long storeId, List<Long> categoryIds, String productName);
 }

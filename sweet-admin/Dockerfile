@@ -1,5 +1,5 @@
 # 基础镜像：OpenJDK 21
-FROM eclipse-temurin:21
+FROM bellsoft/liberica-openjdk-rocky:21.0.8-cds
 
 # 设置工作目录
 WORKDIR /app

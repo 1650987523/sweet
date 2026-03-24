@@ -1,5 +1,20 @@
-FROM docker.mirrors.tuna.tsinghua.edu.cn/library/eclipse-temurin:21-jdk-alpine
+# 🔥 阿里云效专用：从阿里云国内拉取系统镜像，不走国外！
+FROM registry.cn-hangzhou.aliyuncs.com/library/debian:bookworm-slim
 
+# 切换阿里云APT源
+RUN sed -i "s@deb.debian.org@mirrors.aliyun.com@g" /etc/apt/sources.list \
+    && sed -i "s@security.debian.org@mirrors.aliyun.com@g" /etc/apt/sources.list
+
+# 从清华国内下载 JDK21
+RUN apt-get update && apt-get install -y curl --no-install-recommends \
+    && curl -fL -o /tmp/jdk.tar.gz https://mirrors.tuna.tsinghua.edu.cn/Adoptium/temurin21-binaries/releases/download/jdk-21.0.2+13/OpenJDK21U-jdk_x64_linux_hotspot_21.0.2_13.tar.gz \
+    && mkdir -p /opt/jdk \
+    && tar -zxvf /tmp/jdk.tar.gz -C /opt/jdk --strip-components=1 \
+    && rm -rf /tmp/jdk.tar.gz /var/lib/apt/lists/*
+
+# JDK环境变量
+ENV JAVA_HOME=/opt/jdk
+ENV PATH=$JAVA_HOME/bin:$PATH
 WORKDIR /app
 COPY target/sweet-app.jar app.jar
 EXPOSE 8081

@@ -1,18 +1,19 @@
-# 基础镜像：OpenJDK 21
-FROM bellsoft/liberica-openjdk-rocky:21.0.8-cds
+FROM debian:bookworm-slim
 
-# 设置工作目录
+RUN apt-get update && apt-get install -y curl --no-install-recommends \
+    && curl -fL -o /tmp/jdk.tar.gz https://mirrors.tuna.tsinghua.edu.cn/Adoptium/21/jdk/x64/linux/OpenJDK21U-jdk_x64_linux_hotspot_21.0.10_7.tar.gz \
+    && mkdir -p /opt/jdk \
+    && tar -zxvf /tmp/jdk.tar.gz --strip-components=1 -C /opt/jdk \
+    && rm -rf /tmp/jdk.tar.gz /var/lib/apt/lists/*
+
+ENV JAVA_HOME=/opt/jdk
+ENV PATH=$JAVA_HOME/bin:$PATH
+
 WORKDIR /app
+COPY target/sweet-app.jar app.jar
+EXPOSE 8081
 
-# 复制 JAR 包
-COPY target/sweet-admin.jar admin.jar
-
-# 暴露端口
-EXPOSE 8082
-
-# 设置时区
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# 启动命令
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar admin.jar --spring.profiles.active=dev"]
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar --spring.profiles.active=dev"]

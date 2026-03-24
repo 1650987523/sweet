@@ -155,5 +155,25 @@
     </dependencyManagement>
 
 
+<!--    阿里云效下载maven依赖的地址-->
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>Aliyun Maven Mirror</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>aliyun-plugin</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

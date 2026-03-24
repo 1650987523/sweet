@@ -4,6 +4,10 @@ server:
     context-path: /admin
 
 spring:
+  application:
+    name: sweet-admin
+  profiles:
+    active: dev
   datasource:
     dynamic:
       primary: admin

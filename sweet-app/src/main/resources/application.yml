@@ -4,6 +4,10 @@ server:
     context-path: /app
 
 spring:
+  application:
+    name: sweet-app
+  profiles:
+    active: dev
   datasource:
     dynamic:
       primary: app

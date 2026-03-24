@@ -26,7 +26,7 @@ public class ProductSku {
 
     @Schema(description = "SKU 规格定义（JSON 格式）")
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Map<String, Object>> specs;
+    private List<ProductSkuSpecVO> specs;
 
     @Schema(description = "售价")
     private Long price;

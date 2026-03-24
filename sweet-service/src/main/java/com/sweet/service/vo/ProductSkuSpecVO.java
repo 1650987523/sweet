@@ -5,10 +5,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 @Data
 @Accessors(chain = true)
 @Schema(description = "SKU 规格项")
-public class ProductSkuSpecVO {
+public class ProductSkuSpecVO implements Serializable {
 
     @Schema(description = "属性 ID")
     @JsonProperty("attrId")

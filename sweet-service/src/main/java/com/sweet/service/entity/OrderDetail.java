@@ -35,7 +35,7 @@ public class OrderDetail {
 
     @Schema(description = "SKU 规格详情（JSON 格式）")
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Map<String, Object>> skuSpecs;
+    private List<ProductSkuSpecVO> skuSpecs;
 
     @Schema(description = "商品单价（下单时的 SKU 售价，单位：分）")
     private Long price;

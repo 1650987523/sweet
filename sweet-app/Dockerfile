@@ -1,5 +1,5 @@
-# 基础镜像：OpenJDK 21
-FROM openjdk:21-jdk-slim
+# 基础镜像：OpenJDK 21（阿里云镜像源）
+FROM registry.cn-hangzhou.aliyuncs.com/acs/openjdk:21-jdk-slim
 
 # 设置工作目录
 WORKDIR /app

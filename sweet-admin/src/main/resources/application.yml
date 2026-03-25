@@ -60,3 +60,14 @@ sweet:
       bucket-name: sweet
       endpoint: https://a621c66281d1c965ebfdc181272e72b2.r2.cloudflarestorage.com
       custom-domain: https://wanghengrun.cn/
+
+# Actuator 健康检查配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always

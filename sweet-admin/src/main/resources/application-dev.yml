@@ -1,3 +1,20 @@
+#spring:
+#  datasource:
+#    dynamic:
+#      primary: admin          # 默认数据源
+#      strict: true            # 严格模式，未匹配的数据源报错
+#      datasource:
+#        admin:
+#          url: jdbc:postgresql://aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres?currentSchema=admin&useSSL=false&stringtype=unspecified
+#          username: postgres.roritoxjmogptydczrjn
+#          password: wanghengrun12300..
+#          driver-class-name: org.postgresql.Driver
+#        app:
+#          url: jdbc:postgresql://aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres?currentSchema=app&useSSL=false&stringtype=unspecified
+#          username: postgres.roritoxjmogptydczrjn
+#          password: wanghengrun12300..
+#          driver-class-name: org.postgresql.Driver
+
 spring:
   datasource:
     dynamic:
@@ -5,12 +22,12 @@ spring:
       strict: true            # 严格模式，未匹配的数据源报错
       datasource:
         admin:
-          url: jdbc:postgresql://aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres?currentSchema=admin&useSSL=false&stringtype=unspecified
-          username: postgres.roritoxjmogptydczrjn
-          password: wanghengrun12300..
+          url: jdbc:postgresql://101.201.57.221:5432/root?currentSchema=admin&useSSL=false&stringtype=unspecified
+          username: root
+          password: root
           driver-class-name: org.postgresql.Driver
         app:
-          url: jdbc:postgresql://aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres?currentSchema=app&useSSL=false&stringtype=unspecified
-          username: postgres.roritoxjmogptydczrjn
-          password: wanghengrun12300..
+          url: jdbc:postgresql://101.201.57.221:5432/root?currentSchema=app&useSSL=false&stringtype=unspecified
+          username: root
+          password: root
           driver-class-name: org.postgresql.Driver

@@ -5,7 +5,7 @@ FROM crpi-2ofa7xlrovlzmrxk.cn-hangzhou.personal.cr.aliyuncs.com/sweet-mini/soft:
 WORKDIR /admin
 
 # 复制jar包
-COPY ./target/sweet-admin.jar /
+COPY target/sweet-admin.jar /
 
 # 暴露端口
 EXPOSE 8082

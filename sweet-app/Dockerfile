@@ -1,5 +1,5 @@
 #acr镜像
-FROM crpi-2ofa7xlrovlzmrxk.cn-hangzhou.personal.cr.aliyuncs.com/sweet-mini/soft:21.0.10-cds
+FROM crpi-2ofa7xlrovlzmrxk.cn-hangzhou.personal.cr.aliyuncs.com/sweet-mini/soft:jdk21.0.10
 
 WORKDIR /app
 COPY  target/sweet-app.jar /

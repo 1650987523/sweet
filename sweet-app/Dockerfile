@@ -8,4 +8,4 @@ EXPOSE 8081
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar --spring.profiles.active=dev"]
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar sweet-app.jar --spring.profiles.active=dev"]

@@ -3,8 +3,6 @@ package com.sweet.app.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.actuate.health.Health;
-import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/health")
 @RequiredArgsConstructor
-public class HealthController implements HealthIndicator {
+public class HealthController {
 
     @Operation(summary = "健康检查", description = "容器健康检查接口")
     @GetMapping
@@ -28,10 +26,5 @@ public class HealthController implements HealthIndicator {
         result.put("status", "UP");
         result.put("service", "sweet-app");
         return result;
-    }
-
-    @Override
-    public Health health() {
-        return Health.up().build();
     }
 }

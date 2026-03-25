@@ -1,8 +1,8 @@
 #acr镜像
 FROM crpi-2ofa7xlrovlzmrxk.cn-hangzhou.personal.cr.aliyuncs.com/sweet-mini/soft:jdk21.0.10
 
-WORKDIR /app
-COPY  target/sweet-app.jar /
+WORKDIR /sweet-app
+COPY  target/sweet-app.jar /sweet-app
 EXPOSE 8081
 
 ENV TZ=Asia/Shanghai

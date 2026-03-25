@@ -2,10 +2,10 @@
 FROM crpi-2ofa7xlrovlzmrxk.cn-hangzhou.personal.cr.aliyuncs.com/sweet-mini/soft:jdk21.0.10
 
 # 工作目录
-WORKDIR /admin
+WORKDIR /sweet-admin
 
 # 复制jar包
-COPY target/sweet-admin.jar /
+COPY target/sweet-admin.jar /sweet-admin
 
 # 暴露端口
 EXPOSE 8082

@@ -21,14 +21,16 @@ public class InterceptorExcludePatterns {
      * sweet-app 免登录路径
      */
     public static final List<String> APP_EXCLUDE = List.of(
-            "/auth/wechat-login"
+            "/auth/wechat-login",
+            "/health"
     );
 
     /**
      * sweet-admin 免登录路径
      */
     public static final List<String> ADMIN_EXCLUDE = List.of(
-            "/user/login"
+            "/user/login",
+            "/health"
     );
 
     /**

@@ -1,21 +1,17 @@
-package com.sweet.app.service.impl;
+package com.sweet.service.service.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.sweet.app.mapper.AppUserMapper;
-import com.sweet.app.entity.AppUser;
-import com.sweet.app.service.AppUserService;
-import com.sweet.app.vo.AppUserInfoResVo;
-import com.sweet.common.constant.AdminConstant;
 import com.sweet.common.constant.AppConstant;
 import com.sweet.common.util.FileExtUtil;
-import com.sweet.security.utils.LoginPassWordUtil;
-import com.sweet.service.service.impl.BaseServiceImpl;
+import com.sweet.service.entity.AppUser;
+import com.sweet.service.mapper.AppUserMapper;
+import com.sweet.service.service.AppUserService;
 import com.sweet.service.service.CloudflareR2Service;
+import com.sweet.service.vo.AppUserInfoResVo;
 import lombok.AllArgsConstructor;
-import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -31,7 +27,6 @@ import java.util.Map;
 @AllArgsConstructor
 public class AppUserServiceImpl extends BaseServiceImpl<AppUserMapper, AppUser> implements AppUserService {
 
-    private final LoginPassWordUtil loginPassWordUtil;
     private final CloudflareR2Service cloudflareR2Service;
 
     @Override
@@ -41,7 +36,7 @@ public class AppUserServiceImpl extends BaseServiceImpl<AppUserMapper, AppUser> 
     }
 
     @Override
-    public AppUser getUserByUsername(@NonNull String username) {
+    public AppUser getUserByUsername(String username) {
         QueryWrapper<AppUser> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(AppUser::getUsername, username);
         return super.getOne(queryWrapper);
@@ -81,7 +76,7 @@ public class AppUserServiceImpl extends BaseServiceImpl<AppUserMapper, AppUser> 
             // 参数校验
             Assert.notNull(file, "头像文件不能为空");
 
-            // 获取当前登录用户的 storeId（这里使用用户 ID 作为路径标识）
+            // 获取当前登录用户的 ID 作为路径标识
             String userId = StpUtil.getLoginIdAsString();
 
             // 上传

@@ -47,47 +47,18 @@ public class OrderMainController {
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startTime,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endTime) {
 
-        return ResponseEntity.success(service.page(pageNo, pageSize, orderNo, userId, storeId, orderStatus, payStatus, startTime, endTime));
+        return ResponseEntity.success(service.adminPage(pageNo, pageSize, orderNo, userId, storeId, orderStatus, payStatus, startTime, endTime));
 
     }
 
-    @GetMapping("/{id}")
-    @Operation(parameters =  {
-            @Parameter(name = "id", description = "订单 id")
-    }, summary = "获取订单详情", description = "获取订单详情（包含订单主表和明细列表）")
-    public ResponseEntity<OrderDetailVo> getDetail(@PathVariable Integer id) {
-        OrderMain orderMain = service.getInfoById(id);
-        if (orderMain == null) {
-            return ResponseEntity.fail("订单不存在");
-        }
-        List<OrderDetail> orderDetails = service.getOrderDetailsByOrderNo(orderMain.getOrderNo());
-        OrderDetailVo orderDetailVo = new OrderDetailVo()
-                .setOrderMain(orderMain)
-                .setOrderDetails(orderDetails);
-        return ResponseEntity.success(orderDetailVo);
-    }
 
-    @PostMapping
-    @Operation(summary = "新增订单", description = "新增订单")
-    public ResponseEntity<Boolean> save(@RequestBody OrderMain entity) {
-        return ResponseEntity.success(service.save(entity));
-    }
 
-    @PutMapping("/{id}")
-    @Operation(parameters =  {
-            @Parameter(name = "id", description = "订单 id")
-    }, summary = "更新订单", description = "更新订单")
-    public ResponseEntity<Boolean> update(@PathVariable Integer id, @RequestBody OrderMain entity) {
-        entity.setId(id);
-        return ResponseEntity.success(service.updateById(entity));
-    }
-
-    @DeleteMapping("/{id}")
-    @Operation(parameters =  {
-            @Parameter(name = "id", description = "订单 id")
-    }, summary = "删除订单", description = "根据订单 id 删除订单")
-    public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
-        return ResponseEntity.success(service.removeById(id));
+    @PutMapping("/{orderNo}/finish")
+    @Operation(summary = "完成订单", description = "完成订单",parameters = {
+            @Parameter(name = "orderNo", description = "订单号")
+    })
+    public ResponseEntity<Boolean> adminFinishRefund(@PathVariable String orderNo) {
+        return ResponseEntity.success(service.adminFinishOrder(orderNo));
     }
 
 }

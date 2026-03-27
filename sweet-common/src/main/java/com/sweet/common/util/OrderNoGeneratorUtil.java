@@ -22,6 +22,6 @@ public class OrderNoGeneratorUtil {
      * 格式：REF + orderNo
      */
     public static String generateRefundNo(String orderNo) {
-        return REFUND_NO_PREFIX + orderNo;
+        return REFUND_NO_PREFIX  + "-" + orderNo;
     }
 }

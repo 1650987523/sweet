@@ -1,5 +1,6 @@
 package com.sweet.admin.vo;
 
+import com.sweet.service.entity.AppUser;
 import com.sweet.service.entity.OrderDetail;
 import com.sweet.service.entity.OrderMain;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,4 +19,7 @@ public class OrderDetailVo {
 
     @Schema(description = "订单明细列表")
     private List<OrderDetail> orderDetails;
+
+    @Schema(description = "用户信息")
+    private AppUser userInfo;
 }

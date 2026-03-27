@@ -24,8 +24,8 @@ public class AdminUserDept {
     @Schema(name = "部门ID")
     private Integer deptId;
 
-    @Schema(name = "是否主部门")
-    private Integer isMain;
+//    @Schema(name = "是否主部门")
+//    private Integer isMain;
 
     @Schema(name = "创建时间")
     @DateTimeFormat(pattern = "YYYY-")

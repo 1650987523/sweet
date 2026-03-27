@@ -11,6 +11,8 @@ package com.sweet.common.enums;
  * CANCELLED  CANCELLED
  *    ↓
  * REFUNDING → REFUNDED
+ *    ↓
+ * REJECTED
  */
 public enum OrderStatusEnum {
     WAIT_PAY(0, "待支付"),        // 用户下单未支付
@@ -18,7 +20,8 @@ public enum OrderStatusEnum {
     COMPLETED(2, "已完成"),       // 订单完成
     CANCELLED(3, "已取消"),       // 订单已取消（支持退款）
     REFUNDING(4, "退款中"),       // 退款处理中
-    REFUNDED(5, "已退款");        // 退款完成
+    REFUNDED(5, "已退款"),        // 退款完成
+    REJECTED(6, "驳回");          // 退款被拒绝
 
     private final Integer code;
     private final String desc;

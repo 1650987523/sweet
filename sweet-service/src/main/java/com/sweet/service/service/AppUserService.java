@@ -1,9 +1,8 @@
-package com.sweet.app.service;
+package com.sweet.service.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.sweet.app.entity.AppUser;
-import com.sweet.app.vo.AppUserInfoResVo;
-import com.sweet.service.service.BaseService;
+import com.sweet.service.entity.AppUser;
+import com.sweet.service.vo.AppUserInfoResVo;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface AppUserService extends BaseService<AppUser> {
@@ -24,7 +23,7 @@ public interface AppUserService extends BaseService<AppUser> {
     AppUser getUserByUsername(String username);
 
     /**
-     * 根据openid查询用户
+     * 根据 openid 查询用户
      * @param openid
      * @return
      */

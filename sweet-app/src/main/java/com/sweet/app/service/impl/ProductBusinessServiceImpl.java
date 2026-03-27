@@ -1,10 +1,12 @@
 package com.sweet.app.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.sweet.app.mapper.ProductBusinessMapper;
 import com.sweet.app.service.ProductBusinessService;
 import com.sweet.app.dto.OrderCreateReqDto;
 import com.sweet.app.vo.OrderCreateVo;
 import com.sweet.app.vo.SelectSkuVo;
+import com.sweet.common.constant.AdminConstant;
 import com.sweet.common.enums.OrderStatusEnum;
 import com.sweet.common.enums.OrderTypeEnum;
 import com.sweet.common.util.OrderNoGeneratorUtil;
@@ -26,6 +28,7 @@ import com.sweet.service.service.ProductAttributeRelationService;
 import com.sweet.service.service.ProductCategoryService;
 import com.sweet.service.service.ProductService;
 import com.sweet.service.service.ProductSkuService;
+import com.sweet.service.dto.UpdateOrderStatusDto;
 import com.sweet.service.vo.ProductAttributeWithValuesVo;
 import com.sweet.service.vo.ProductAttributeValueVo;
 import com.sweet.service.vo.ProductSimpleVo;
@@ -246,8 +249,11 @@ public class ProductBusinessServiceImpl implements ProductBusinessService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean cancelOrder(String orderNo, Long userId) {
-        log.info("cancelOrder orderNo:{}, userId:{}", orderNo, userId);
+    public boolean cancelOrder(String orderNo, Long userId, String cancelReason) {
+        if(Objects.isNull(userId)){
+            userId = (Long) StpUtil.getExtra(AdminConstant.USER_ID_KEY);
+        }
+        log.info("cancelOrder orderNo:{}, userId:{}, cancelReason:{}", orderNo, userId, cancelReason);
 
         // 1. 参数校验
         Assert.hasText(orderNo, "订单号不能为空");
@@ -262,7 +268,11 @@ public class ProductBusinessServiceImpl implements ProductBusinessService {
                 "只有待支付状态的订单可以取消");
 
         // 4. 更新订单状态为已取消
-        boolean updated = orderMainService.updateStatus(orderNo, OrderStatusEnum.CANCELLED.getCode());
+        UpdateOrderStatusDto updateDto = new UpdateOrderStatusDto();
+        updateDto.setOrderNo(orderNo)
+                .setOrderStatus(OrderStatusEnum.CANCELLED.getCode())
+                .setReason(cancelReason);
+        boolean updated = orderMainService.updateInfoByOrderNo(updateDto);
         Assert.isTrue(updated, "取消订单失败");
 
         // 6. 获取订单明细并恢复库存

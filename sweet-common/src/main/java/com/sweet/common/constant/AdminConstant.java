@@ -1,7 +1,11 @@
 package com.sweet.common.constant;
 
+import com.sweet.common.enums.OrderStatusEnum;
+
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminConstant {
 
@@ -41,4 +45,12 @@ public class AdminConstant {
 
     public static final String USER_ID_KEY = "userId";
     public static final String USER_NAME_KEY = "username";
+
+    /**
+     * 可以申请退款的状态
+     */
+    public static final List<Integer> ORDER_STATUS_CAN_APPLY_REFUND  = List.of(
+            OrderStatusEnum.IN_PROGRESS.getCode(),
+            OrderStatusEnum.COMPLETED.getCode()
+    );
 }

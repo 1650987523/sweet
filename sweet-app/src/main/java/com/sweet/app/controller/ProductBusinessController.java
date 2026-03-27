@@ -52,10 +52,15 @@ public class ProductBusinessController {
     }
 
     @Operation(summary = "取消订单", description = "取消待支付订单，自动恢复库存",
-               parameters = {@Parameter(name = "orderNo", description = "订单编号", required = true),
-                             @Parameter(name = "userId", description = "用户 ID", required = true)})
+            parameters = {
+                @Parameter(name = "orderNo", description = "订单编号", required = true),
+                @Parameter(name = "userId", description = "用户 ID", required = false),
+                @Parameter(name = "cancelReason", description = "取消原因", required = false)
+    })
     @PostMapping("/order/cancel")
-    public ResponseEntity<Boolean> cancelOrder(@RequestParam String orderNo, @RequestParam Long userId) {
-        return ResponseEntity.success(productBusinessService.cancelOrder(orderNo, userId));
+    public ResponseEntity<Boolean> cancelOrder(@RequestParam String orderNo,
+                                               @RequestParam(required = false) Long userId,
+                                               @RequestParam(required = false) String cancelReason) {
+        return ResponseEntity.success(productBusinessService.cancelOrder(orderNo, userId, cancelReason));
     }
 }

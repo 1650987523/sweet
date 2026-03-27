@@ -1,6 +1,7 @@
 package com.sweet.service.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sweet.service.dto.UpdateOrderStatusDto;
 import com.sweet.service.entity.OrderDetail;
 import com.sweet.service.entity.OrderMain;
 
@@ -29,6 +30,24 @@ public interface OrderMainService extends BaseService<OrderMain>{
                                         LocalDateTime startTime, LocalDateTime endTime);
 
     /**
+     * 后台订单管理分页列表
+     * @param pageNo
+     * @param pageSize
+     * @param orderNo
+     * @param userId
+     * @param storeId
+     * @param orderStatus
+     * @param payStatus
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    Page<OrderMain> adminPage(Integer pageNo, Integer pageSize, String orderNo,
+                                         Integer userId, Integer storeId,
+                                         Integer orderStatus, Integer payStatus,
+                                         LocalDateTime startTime, LocalDateTime endTime);
+
+    /**
      * 根据 ID 获取订单信息
      *
      * @param id 订单 ID
@@ -54,11 +73,17 @@ public interface OrderMainService extends BaseService<OrderMain>{
     List<OrderDetail> getOrderDetailsByOrderNo(String orderNo);
 
     /**
-     * 更新订单状态
+     * 根据订单号更新订单状态
      *
-     * @param orderNo 订单号
-     * @param orderStatus 订单状态
+     * @param dto 更新请求参数
      * @return 是否更新成功
      */
-    boolean updateStatus(String orderNo, Integer orderStatus);
+    boolean updateInfoByOrderNo(UpdateOrderStatusDto dto);
+
+    /**
+     * 后台完成订单
+     * @param orderNo
+     * @return
+     */
+    Boolean adminFinishOrder(String orderNo);
 }

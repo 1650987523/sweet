@@ -25,7 +25,7 @@ public class OrderRefund {
     private String orderNo;
 
     @Schema(description = "用户 ID")
-    private Integer userId;
+    private String userId;
 
     @Schema(description = "门店 ID")
     private Integer storeId;
@@ -39,7 +39,7 @@ public class OrderRefund {
     @Schema(description = "实际退款金额（单位：分）")
     private Long actualRefundAmount;
 
-    @Schema(description = "退款类型（1=仅退款，2=退货退款）")
+    @Schema(description = "退款类型（1=门店发起退款，2=用户退款）")
     private Integer refundType;
 
     @Schema(description = "退款原因")

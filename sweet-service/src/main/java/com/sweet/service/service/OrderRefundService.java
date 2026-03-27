@@ -2,11 +2,13 @@ package com.sweet.service.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.sweet.service.dto.RefundReqVo;
-import com.sweet.service.dto.RefundResVo;
+import com.sweet.service.dto.AdminAuditRefundDto;
+import com.sweet.service.dto.ApplyRefundDto;
+import com.sweet.service.dto.ApplyRefundVo;
 import com.sweet.service.entity.OrderRefund;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 订单退款服务接口
@@ -25,14 +27,21 @@ public interface OrderRefundService extends IService<OrderRefund> {
      * @param orderNo 订单号
      * @return 退款信息
      */
-    OrderRefund getByOrderNo(String orderNo);
+    List<OrderRefund> getByOrderNo(String orderNo);
 
     /**
-     * 申请退款
-     * @param req 退款请求参数
+     * 门店后台申请退款
+     * @param dto 退款请求参数
      * @return 退款响应
      */
-    RefundResVo applyRefund(RefundReqVo req);
+    ApplyRefundVo adminApplyRefund(ApplyRefundDto dto);
+
+    /**
+     * app端用户申请退款
+     * @param dto
+     * @return
+     */
+    ApplyRefundVo appApplyRefund(ApplyRefundDto dto);
 
     /**
      * 分页查询退款列表
@@ -50,4 +59,11 @@ public interface OrderRefundService extends IService<OrderRefund> {
     Page<OrderRefund> page(Integer pageNo, Integer pageSize, String refundNo, String orderNo,
                            Integer userId, Integer storeId, Integer refundStatus,
                            LocalDateTime startTime, LocalDateTime endTime);
+
+    /**
+     * 门店后台审核退款
+     * @param dto 审核请求参数
+     * @return 是否审核成功
+     */
+    Boolean adminAuditRefund(AdminAuditRefundDto dto);
 }

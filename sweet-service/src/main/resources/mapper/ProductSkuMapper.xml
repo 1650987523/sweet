@@ -18,12 +18,12 @@
 <!--        <result column="update_time" property="updateTime"/>-->
     </resultMap>
 
-    <!-- 扣减库存（普通 UPDATE，依赖调用方事先加锁） -->
+    <!-- 扣减库存（普通 UPDATE，依赖调用方事先加锁） AND stock >= #{quantity} 乐观锁加 -->
     <update id="reduceStock">
         UPDATE app.product_sku
         SET stock = stock - #{quantity},
             update_time = NOW()
-        WHERE id = #{skuId} AND stock >= #{quantity}
+        WHERE id = #{skuId}
     </update>
 
     <!-- 查询库存（行锁） -->

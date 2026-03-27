@@ -75,7 +75,7 @@ public class OrderMain {
     @Schema(description = "订单备注")
     private String remark;
 
-    @Schema(description = "取消原因（仅订单状态为已取消时有效）")
+    @Schema(description = "取消原因")
     private String cancelReason;
 
     @Schema(description = "创建时间")

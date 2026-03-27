@@ -1,6 +1,7 @@
 package com.sweet.app.vo;
 
 import com.sweet.common.enums.AuthModeEnum;
+import com.sweet.service.vo.AppUserInfoResVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.experimental.Accessors;

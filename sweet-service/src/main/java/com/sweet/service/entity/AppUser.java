@@ -1,8 +1,6 @@
-package com.sweet.app.entity;
+package com.sweet.service.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -11,12 +9,13 @@ import lombok.experimental.Accessors;
 import java.util.Date;
 
 @Data
-@TableName("app_user")
+@TableName(schema = "app", value = "app_user")
 @Accessors(chain = true)
+@Schema(description = "用户实体")
 public class AppUser {
 
     @TableId(type = IdType.AUTO)
-    @Schema(description = "用户ID")
+    @Schema(description = "用户 ID")
     private Long id;
 
     @Schema(description = "用户名")
@@ -40,7 +39,7 @@ public class AppUser {
     @Schema(description = "头像")
     private String avatar;
 
-    @Schema(description = "微信openid")
+    @Schema(description = "微信 openid")
     private String wechatOpenid;
 
     @Schema(description = "登录类型")

@@ -1,7 +1,10 @@
 package com.sweet.admin.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sweet.service.dto.AdminAuditRefundDto;
 import com.sweet.common.response.ResponseEntity;
+import com.sweet.service.dto.ApplyRefundDto;
+import com.sweet.service.dto.ApplyRefundVo;
 import com.sweet.service.entity.OrderRefund;
 import com.sweet.service.service.OrderRefundService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -41,8 +44,8 @@ public class OrderRefundController {
             @RequestParam(required = false) Integer userId,
             @RequestParam(required = false) Integer storeId,
             @RequestParam(required = false) Integer refundStatus,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startTime,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endTime) {
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startTime,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endTime) {
 
         return ResponseEntity.success(service.page(pageNo, pageSize, refundNo, orderNo, userId, storeId, refundStatus, startTime, endTime));
     }
@@ -52,11 +55,7 @@ public class OrderRefundController {
             @Parameter(name = "id", description = "退款 id")
     }, summary = "获取退款详情", description = "获取退款详情")
     public ResponseEntity<OrderRefund> getDetail(@PathVariable Long id) {
-        OrderRefund orderRefund = service.getById(id);
-        if (orderRefund == null) {
-            return ResponseEntity.fail("退款记录不存在");
-        }
-        return ResponseEntity.success(orderRefund);
+        return ResponseEntity.success(service.getById(id));
     }
 
     @PostMapping
@@ -74,11 +73,16 @@ public class OrderRefundController {
         return ResponseEntity.success(service.updateById(entity));
     }
 
-    @DeleteMapping("/{id}")
-    @Operation(parameters = {
-            @Parameter(name = "id", description = "退款 id")
-    }, summary = "删除退款", description = "根据退款 id 删除退款")
-    public ResponseEntity<Boolean> delete(@PathVariable Long id) {
-        return ResponseEntity.success(service.removeById(id));
+    @PostMapping("/apply")
+    @Operation(summary = "申请退款", description = "申请退款")
+    public ResponseEntity<ApplyRefundVo> adminApplyRefund(@RequestBody ApplyRefundDto dto) {
+        return ResponseEntity.success(service.adminApplyRefund(dto));
     }
+
+    @PutMapping("/audit")
+    @Operation(summary = "门店审核退款", description = "门店审核退款")
+    public ResponseEntity<Boolean> adminAuditRefund(@RequestBody AdminAuditRefundDto dto) {
+        return ResponseEntity.success(service.adminAuditRefund(dto));
+    }
+
 }

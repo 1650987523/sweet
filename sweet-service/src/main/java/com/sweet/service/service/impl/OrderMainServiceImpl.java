@@ -4,6 +4,8 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sweet.common.enums.OrderStatusEnum;
+import com.sweet.service.dto.UpdateOrderStatusDto;
 import com.sweet.service.entity.OrderDetail;
 import com.sweet.service.entity.OrderMain;
 import com.sweet.service.mapper.OrderMainMapper;
@@ -54,6 +56,28 @@ public class OrderMainServiceImpl extends BaseServiceImpl<OrderMainMapper, Order
     }
 
     @Override
+    public Page<OrderMain> adminPage(Integer pageNo, Integer pageSize, String orderNo, Integer userId, Integer storeId, Integer orderStatus, Integer payStatus, LocalDateTime startTime, LocalDateTime endTime) {
+        if(Objects.nonNull(storeId) && storeId.equals(0)){
+            storeId = null;
+        }
+
+        Page<OrderMain> page = new Page<>(pageNo, pageSize);
+
+        QueryWrapper<OrderMain> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda()
+                .like(StringUtils.hasText(orderNo), OrderMain::getOrderNo, orderNo)
+                .eq(Objects.nonNull(userId), OrderMain::getUserId, userId)
+                .eq(Objects.nonNull(storeId), OrderMain::getStoreId, storeId)
+                .eq(Objects.nonNull(orderStatus), OrderMain::getOrderStatus, orderStatus)
+                .eq(Objects.nonNull(payStatus), OrderMain::getPayStatus, payStatus)
+                .ge(Objects.nonNull(startTime), OrderMain::getCreateTime, startTime)
+                .le(Objects.nonNull(endTime), OrderMain::getCreateTime, endTime);
+        queryWrapper.lambda().orderByDesc(OrderMain::getCreateTime);
+
+        return super.page(page, queryWrapper);
+    }
+
+    @Override
     public OrderMain getInfoById(Integer id) {
         return super.getById(id);
     }
@@ -73,9 +97,23 @@ public class OrderMainServiceImpl extends BaseServiceImpl<OrderMainMapper, Order
     }
 
     @Override
-    public boolean updateStatus(String orderNo, Integer orderStatus) {
+    public boolean updateInfoByOrderNo(UpdateOrderStatusDto dto) {
+        String orderNo = dto.getOrderNo();
+        Integer orderStatus = dto.getOrderStatus();
+        String reason = dto.getReason();
+
         UpdateWrapper<OrderMain> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.lambda().eq(OrderMain::getOrderNo, orderNo).set(OrderMain::getOrderStatus, orderStatus);
+        updateWrapper.lambda()
+                .eq(OrderMain::getOrderNo, orderNo)
+                .set(Objects.nonNull(orderStatus), OrderMain::getOrderStatus, orderStatus)
+                .set(StringUtils.hasText(reason), OrderMain::getRemark, reason);
+        return super.update(updateWrapper);
+    }
+
+    @Override
+    public Boolean adminFinishOrder(String orderNo) {
+        UpdateWrapper<OrderMain> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.lambda().eq(OrderMain::getOrderNo, orderNo).set(OrderMain::getOrderStatus, OrderStatusEnum.COMPLETED.getCode());
         return super.update(updateWrapper);
     }
 }

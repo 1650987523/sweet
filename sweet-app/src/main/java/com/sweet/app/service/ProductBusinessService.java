@@ -49,7 +49,8 @@ public interface ProductBusinessService {
      * 取消订单
      * @param orderNo 订单号
      * @param userId 用户 ID
+      * @param cancelReason 取消原因
      * @return 是否取消成功
      */
-    boolean cancelOrder(String orderNo, Long userId);
+    boolean cancelOrder(String orderNo, Long userId, String cancelReason);
 }

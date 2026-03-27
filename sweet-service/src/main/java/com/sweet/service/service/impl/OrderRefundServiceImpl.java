@@ -1,12 +1,19 @@
 package com.sweet.service.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sweet.common.constant.AdminConstant;
+import com.sweet.common.enums.OrderRefundStatusEnum;
+import com.sweet.common.enums.OrderRefundTypeEnum;
 import com.sweet.common.enums.OrderStatusEnum;
 import com.sweet.common.util.OrderNoGeneratorUtil;
-import com.sweet.service.dto.RefundReqVo;
-import com.sweet.service.dto.RefundResVo;
+import com.sweet.service.dto.AdminAuditRefundDto;
+import com.sweet.service.dto.ApplyRefundDto;
+import com.sweet.service.dto.ApplyRefundVo;
+import com.sweet.service.dto.UpdateOrderStatusDto;
 import com.sweet.service.entity.OrderMain;
 import com.sweet.service.entity.OrderRefund;
 import com.sweet.service.mapper.OrderRefundMapper;
@@ -20,8 +27,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * 订单退款服务实现类
@@ -31,88 +38,149 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OrderRefundServiceImpl extends ServiceImpl<OrderRefundMapper, OrderRefund> implements OrderRefundService {
 
-    private static final Integer DEFAULT_REFUND_TYPE = 1; // 仅退款
-    private static final Integer REFUND_STATUS_PENDING = 0; // 待审核
-
     private final OrderMainService orderMainService;
 
     @Override
     public OrderRefund getByRefundNo(String refundNo) {
-        return baseMapper.selectByRefundNo(refundNo);
+        QueryWrapper<OrderRefund> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(OrderRefund::getRefundNo, refundNo);
+        return super.getOne(queryWrapper);
     }
 
     @Override
-    public OrderRefund getByOrderNo(String orderNo) {
-        return baseMapper.selectByOrderNo(orderNo);
+    public List<OrderRefund> getByOrderNo(String orderNo) {
+        QueryWrapper<OrderRefund> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(OrderRefund::getOrderNo, orderNo);
+        return super.list(queryWrapper);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public RefundResVo applyRefund(RefundReqVo req) {
-        log.info("申请退款 req:{}", req);
+    public ApplyRefundVo adminApplyRefund(ApplyRefundDto dto) {
+        log.info("adminApplyRefund dto:{}", dto);
 
-        // 1. 提取请求参数
-        String orderNo = req.getOrderNo();
-        Integer userId = req.getUserId().intValue();
+        //参数检查
+        String orderNo = dto.getOrderNo();
+        Integer storeId = dto.getStoreId();
+        Integer refundType = dto.getRefundType();
+        Long orderAmount = dto.getOrderAmount();
+        Long refundAmount = dto.getRefundAmount();
 
-        // 2. 参数校验
         Assert.hasText(orderNo, "订单号不能为空");
-        Assert.notNull(userId, "用户 ID 不能为空");
+        Assert.notNull(storeId, "门店 ID 不能为空");
+        Assert.notNull(refundType, "退款类型不能为空");
+        Assert.notNull(orderAmount, "订单金额不能为空");
+        Assert.notNull(refundAmount, "退款金额不能为空");
 
-        // 3. 查询订单信息
+        //订单信息,订单状态检查
         OrderMain orderMain = orderMainService.getInfo(orderNo, null);
         Assert.notNull(orderMain, "订单不存在");
+        Integer orderStatus = orderMain.getOrderStatus();
+        Assert.isTrue(AdminConstant.ORDER_STATUS_CAN_APPLY_REFUND.contains(orderStatus), "订单状态不允许退款");
 
-        // 4. 校验订单归属
-        Assert.isTrue(orderMain.getUserId().equals(userId), "不能申请他人的订单退款");
+        //是否存在申请退款记录
+        //List<OrderRefund> orderRefunds = this.getByOrderNo(orderNo);
 
-        // 5. 校验订单状态（只能是已支付状态）
-        Assert.isTrue(OrderStatusEnum.IN_PROGRESS.getCode().equals(orderMain.getPayStatus()), "只能退款已支付的订单");
-
-        // 6. 检查是否已申请过退款
-        OrderRefund existRefund = getByOrderNo(orderNo);
-        Assert.isNull(existRefund, "该订单已申请过退款");
-
-        // 7. 使用订单实付金额作为退款金额
-        Long refundAmount = orderMain.getPayAmount();
-
-        // 8. 生成退款单号
+        //创建退款记录
         String refundNo = OrderNoGeneratorUtil.generateRefundNo(orderNo);
+        String refundReason = dto.getRefundReason();
+        String loginId = StpUtil.getLoginIdAsString();
 
-        // 9. 创建退款记录
         OrderRefund orderRefund = new OrderRefund()
                 .setRefundNo(refundNo)
                 .setOrderNo(orderNo)
-                .setUserId(userId)
+                .setUserId(loginId)
                 .setStoreId(orderMain.getStoreId())
                 .setOrderAmount(orderMain.getPayAmount())
                 .setRefundAmount(refundAmount)
-                .setActualRefundAmount(refundAmount)
-                .setRefundType(DEFAULT_REFUND_TYPE)
-                .setRefundReason(req.getReason())
-                .setRefundStatus(REFUND_STATUS_PENDING)
-                .setCreateBy(String.valueOf(userId));
+                .setRefundType(OrderRefundTypeEnum.STORE_INITIATED.getCode())
+                .setRefundReason(refundReason)
+                .setRefundStatus(OrderRefundStatusEnum.PENDING_AUDIT.getCode())
+                .setCreateBy(loginId);
         super.save(orderRefund);
 
-        // 10. 更新订单状态为退款中
-        Integer refundingCode = OrderStatusEnum.REFUNDING.getCode();
-        orderMain.setPayStatus(refundingCode);
-        orderMain.setOrderStatus(refundingCode);
-        orderMain.setUpdateBy(String.valueOf(userId));
-        orderMain.setCancelReason(req.getReason());
-        orderMainService.updateById(orderMain);
+        //更新订单为退款中
+        UpdateOrderStatusDto updateDto = new UpdateOrderStatusDto();
+        updateDto.setOrderNo(orderNo)
+                .setOrderStatus(OrderStatusEnum.REFUNDING.getCode())
+                .setReason(refundReason);
+        orderMainService.updateInfoByOrderNo(updateDto);
 
-        // 11. 封装返回结果
-        RefundResVo resVo = new RefundResVo();
-        resVo.setRefundNo(refundNo);
-        resVo.setOrderNo(orderNo);
-        resVo.setRefundAmount(refundAmount);
-        resVo.setRefundStatus(refundingCode);
-
-        log.info("退款申请成功：orderNo:{}, refundNo:{}, amount:{}", orderNo, refundNo, refundAmount);
+        //结果返回
+        ApplyRefundVo resVo = new ApplyRefundVo()
+                .setRefundNo(refundNo)
+                .setOrderNo(orderNo)
+                .setRefundAmount(refundAmount)
+                .setRefundStatus(OrderRefundStatusEnum.PENDING_AUDIT.getCode());
 
         return resVo;
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public ApplyRefundVo appApplyRefund(ApplyRefundDto dto) {
+        log.info("appApplyRefund dto:{}", dto);
+
+        //参数检查
+        String orderNo = dto.getOrderNo();
+        Integer storeId = dto.getStoreId();
+        Integer refundType = dto.getRefundType();
+        Long orderAmount = dto.getOrderAmount();
+        Long refundAmount = dto.getRefundAmount();
+
+        Assert.hasText(orderNo, "订单号不能为空");
+        Assert.notNull(storeId, "门店 ID 不能为空");
+        Assert.notNull(refundType, "退款类型不能为空");
+        Assert.notNull(orderAmount, "订单金额不能为空");
+        Assert.notNull(refundAmount, "退款金额不能为空");
+
+        //订单信息,订单归属,订单状态检查
+        OrderMain orderMain = orderMainService.getInfo(orderNo, null);
+        Assert.notNull(orderMain, "订单不存在");
+        Long userId =  Long.valueOf(StpUtil.getExtra(AdminConstant.USER_ID_KEY).toString());
+        log.info("appApplyRefund userId:{}", userId);
+        Assert.notNull(userId, "用户 ID 不能为空");
+        Assert.isTrue(userId.equals(Long.valueOf(orderMain.getUserId())), "订单归属用户错误");
+        Integer orderStatus = orderMain.getOrderStatus();
+        Assert.isTrue(AdminConstant.ORDER_STATUS_CAN_APPLY_REFUND.contains(orderStatus), "订单状态不允许退款");
+
+        //是否存在申请退款记录
+        //List<OrderRefund> orderRefunds = this.getByOrderNo(orderNo);
+
+        //创建退款记录
+        String refundNo = OrderNoGeneratorUtil.generateRefundNo(orderNo);
+        String refundReason = dto.getRefundReason();
+        String loginId = StpUtil.getLoginIdAsString();
+
+        OrderRefund orderRefund = new OrderRefund()
+                .setRefundNo(refundNo)
+                .setOrderNo(orderNo)
+                .setUserId(String.valueOf(userId))
+                .setStoreId(orderMain.getStoreId())
+                .setOrderAmount(orderMain.getPayAmount())
+                .setRefundType(refundType)
+                .setRefundReason(refundReason)
+                .setRefundStatus(OrderRefundStatusEnum.PENDING_AUDIT.getCode())
+                .setCreateBy(String.valueOf(userId));
+        super.save(orderRefund);
+
+        //更新订单为退款中
+        UpdateOrderStatusDto updateDto = new UpdateOrderStatusDto();
+        updateDto.setOrderNo(orderNo)
+                .setOrderStatus(OrderStatusEnum.REFUNDING.getCode())
+                .setReason(refundReason);
+        orderMainService.updateInfoByOrderNo(updateDto);
+
+        //结果返回
+        ApplyRefundVo resVo = new ApplyRefundVo()
+                .setRefundNo(refundNo)
+                .setOrderNo(orderNo)
+                .setRefundAmount(refundAmount)
+                .setRefundStatus(OrderRefundStatusEnum.PENDING_AUDIT.getCode());
+
+        return resVo;
+    }
+
 
     @Override
     public Page<OrderRefund> page(Integer pageNo, Integer pageSize, String refundNo, String orderNo,
@@ -132,5 +200,47 @@ public class OrderRefundServiceImpl extends ServiceImpl<OrderRefundMapper, Order
                 .orderByDesc(OrderRefund::getCreateTime);
 
         return super.page(page, queryWrapper);
+    }
+
+    @Override
+    public Boolean adminAuditRefund(AdminAuditRefundDto dto) {
+        log.info("adminAuditRefund dto:{}", dto);
+
+        String refundNo = dto.getRefundNo();
+        String orderNo = dto.getOrderNo();
+        String auditReason = dto.getAuditReason();
+        Integer auditStatus = dto.getAuditStatus();
+        Long refundAmount = dto.getRefundAmount();
+
+        Assert.hasText(refundNo, "退款单号不能为空");
+        Assert.hasText(orderNo, "订单号不能为空");
+        Assert.notNull(auditStatus, "审核状态不能为空");
+        Assert.notNull(refundAmount, "退款金额不能为空");
+        Assert.isTrue(StringUtils.hasText(auditReason), "审核原因不能为空");
+
+        // 如果审核通过，设置实际退款金额；如果拒绝，则为 0
+        Long actualRefundAmount = OrderRefundStatusEnum.AUDIT_APPROVED.getCode().equals(auditStatus)
+                ? refundAmount
+                : 0L;
+        log.info("adminAuditRefund actualRefundAmount:{}", actualRefundAmount);
+
+        UpdateWrapper<OrderRefund> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.lambda().eq(OrderRefund::getRefundNo, refundNo)
+                .set(OrderRefund::getRefundStatus, auditStatus)
+                .set(OrderRefund::getAuditRemark, auditReason)
+                .set(OrderRefund::getRefundAmount, actualRefundAmount)
+                .set(OrderRefund::getAuditTime, LocalDateTime.now());
+        super.update(updateWrapper);
+
+        // 修改订单状态：审核通过更新为已退款，审核拒绝更新为驳回
+        Integer targetOrderStatus = OrderRefundStatusEnum.AUDIT_APPROVED.getCode().equals(auditStatus)
+                ? OrderStatusEnum.REFUNDED.getCode()
+                : OrderStatusEnum.REJECTED.getCode();
+
+        UpdateOrderStatusDto updateDto = new UpdateOrderStatusDto();
+        updateDto.setOrderNo(orderNo)
+                .setOrderStatus(targetOrderStatus);
+        orderMainService.updateInfoByOrderNo(updateDto);
+        return true;
     }
 }

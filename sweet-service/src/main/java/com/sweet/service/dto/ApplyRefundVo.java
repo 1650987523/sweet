@@ -2,13 +2,14 @@ package com.sweet.service.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * 退款响应 DTO
  */
 @Data
-@Schema(description = "退款响应 DTO")
-public class RefundResVo {
+@Accessors(chain = true)
+public class ApplyRefundVo {
 
     @Schema(description = "退款单号")
     private String refundNo;

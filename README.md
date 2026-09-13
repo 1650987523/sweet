@@ -6,7 +6,7 @@ Sweet 是一个基于 Spring Boot 3 的**智慧餐饮/零售管理系统**，支
 
 **🎓 项目定位**：本项目主要用于供大家学习和研究，非企业级生产框架。
 
-**🌐 部署地址**：[https://wanghengrun.shop](https://wanghengrun.shop)
+**🌐 部署地址**：[https://sweet.wanghengrun.cn](https://sweet.wanghengrun.cn/)
 
 ## 技术栈
 
